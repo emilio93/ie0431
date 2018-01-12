@@ -1,0 +1,12 @@
+build
+texaux
+
+*.aux
+*.log
+*.pdf
+*.fdb_latexmk
+*.fls
+*.gz
+*.out
+
+*eps-converted-to.pdf

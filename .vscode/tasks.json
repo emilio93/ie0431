@@ -1,0 +1,27 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pdflatex",
+            "type": "shell",
+            "command": "pdflatex -aux-directory='texaux' -enable-8bit-chars -enable-installer -job-name='Salida' -include-directory='clases' -output-directory='build' documento.tex"
+        },
+        {
+            "label": "pdflatex linux",
+            "type": "shell",
+            "command": "mkdir -p build; \
+            pdflatex -interaction=nonstopmode \
+            -jobname=Tarea1 -output-directory=build \
+            -8bit tarea1.tex;\
+            pdflatex -interaction=nonstopmode \
+            -jobname=Tarea1 -output-directory=build \
+            -8bit tarea1.tex;",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

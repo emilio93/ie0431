@@ -1,0 +1,4 @@
+{
+    "latex-workshop.latex.outputDir": "./build",
+    "latex-workshop.texcount.args": ["-jobname=Salida"]
+}
