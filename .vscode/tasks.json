@@ -11,13 +11,7 @@
         {
             "label": "pdflatex linux",
             "type": "shell",
-            "command": "mkdir -p build; \
-            pdflatex -interaction=nonstopmode \
-            -jobname=Tarea1 -output-directory=build \
-            -8bit tarea1.tex;\
-            pdflatex -interaction=nonstopmode \
-            -jobname=Tarea1 -output-directory=build \
-            -8bit tarea1.tex;",
+            "command": "./build.sh",
             "group": {
                 "kind": "build",
                 "isDefault": true

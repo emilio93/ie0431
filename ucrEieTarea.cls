@@ -75,6 +75,7 @@
     \par
     \refstepcounter{ejercicioc}\par\medskip
     \noindent\textbf{\large Ejercicio~\theejercicioc} \rmfamily
+    \\\par
 }
 {
 }
