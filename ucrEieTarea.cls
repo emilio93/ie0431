@@ -73,12 +73,14 @@
 \newcounter{ejercicioc}[section]
 \newenvironment{ejercicio}
 {
+  \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
     \par
     \refstepcounter{ejercicioc}\par\medskip
-    \noindent\textbf{\large Ejercicio~\theejercicioc} \rmfamily
+    \noindent\textbf{\large Ejercicio~\theejercicioc}
     \\\par
 }
 {
+  $\quad$\par
 }
 
 \renewcommand\section{\@startsection {section}{1}{\z@}%

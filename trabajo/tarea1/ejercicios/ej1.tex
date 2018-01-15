@@ -2,16 +2,17 @@
 
   \begin{enumerate}
     \item % a
-    La ganancia del transmisor se obtiene normalizada de 0 a 1, se hace respecto al ámbito de medición, $1/3.8m = (5/19)m^{-1}$, lo que es un $26.3\%/m$.
+    La ganancia del transmisor se obtiene normalizada de 0 a 1, se hace respecto al ámbito de medición, $K_T = 1/3.8m = (5/19)m^{-1}$, lo que es un $26.3\%/m$.
 
     \item % b
     A partir de la característica estática se obtiene el valor de $Q_e$ en términos de $H$ y $X_{VS}$:
     \begin{align*}
+    \tag{Característica Estática}
     H &=\frac{1}{\rho g} \left( \frac{Q_e}{X_{VS}K_{VS}} \right)^2
     \\
     Q_e(H) &= X_{VS} K_{VS}\sqrt{\rho g H}
     \end{align*}
-    Con esto se averigüa los valores máximo, típico y mínimo para el caudal de entrada según los valores en el enunciado según corresponda.
+    Con esto se averigua los valores máximo, típico y mínimo para el caudal de entrada según los valores en el enunciado según corresponda.
     \begin{align*}
     Q_{e_{min}} &= Q_{e}(2.5)|_{X_{VS}=0.4} = 0.4 \times 0.001 \times \sqrt{1475\times9.81\times2.5} \approx 0.0761 \frac{m^3}{s}
     \\
@@ -23,14 +24,29 @@
     Con estos valores se puede obtener el porcentaje de apertura necesaria en la válvula si se conoce el caudal máximo posible, esto es, cuando la válvula se encuentra completamente abierta, suponiendo que este caudal $Q{e_{MAX}}$ cumple $Q{e_{MAX}} \geq Q_{e_{max}}$, se puede obtener $K_{VC}=Q{e_{max}}/100\%=0.00135m^3/s/\%$.
 
     \item % c
-      $\quad$
+    En la figura \ref{ej1:diag1} se muestra el sistema de control para el proceso hidráulico linealizado.
+    \begin{align*}
+      \tag{Modelo linealizado}
+      h(s) &= \frac{K_1}{Ts + 1}q_e(s) + \frac{K_2}{Ts + 1}X_{VS}(s)\\
+    \end{align*}
+    \begin{align*}
+      K_1 &= \frac{2}{X_{VS0} K_{VS}}\sqrt{\frac{H_0}{\rho g}} &
+      K_2 &= -\frac{2H_0}{X_{VS0}} &
+      T &= \frac{2A}{X_{VS0} K_{VS}}\sqrt{\frac{H_0}{\rho g}} &
+    \end{align*}
+
+
+
     \begin{figure}[H]
       \centering
       \includegraphics{tarea1/tikz/control-realimentado-hidraulico.tikz}
       \caption{Diagrama del sistema con el proceso completo.}
       \label{ej1:diag1}
     \end{figure}
-          \begin{figure}[H]
+
+    Al reducir el diagrama de bloques, uniendo $K_{VC}$, $K_1$ y $K_T$ en el lado derecho de ls suma de $q_e(s)$ y $K_2 X_{VS}(s)$, se obtiene el diagrama de bloques reducido en la figura \ref{ej1:diag2}, se muestra a la derecha en su forma más simple.  
+
+   \begin{figure}[H]
     \centering
       \includegraphics[width=\textwidth]{tarea1/tikz/control-realimentado-hidraulico-reducido.tikz}
       \caption{Diagrama del sistema reducido.}
@@ -38,7 +54,7 @@
     \end{figure}
 
     \item % d
-    En la figura \ref{ej1:img1} se muestra la característica estática del sistema para niveles mínimos de distorsión($h_{X_{VS}min}(q_e)$), típicos($h_{X_{VS}typ}(q_e)$) y máximos($h_{X_{VS}max}(q_e)$). La intersección de la curva $h_{X_{VS}typ}(q_e)$ y el nivel de 3m representa el punto de operación más probable.
+    En la figura \ref{ej1:img1} se muestra la característica estática del sistema para niveles mínimos de distorsión($h_{X_{VS}min}(q_e)$), típicos($h_{X_{VS}typ}(q_e)$) y máximos($h_{X_{VS}max}(q_e)$). La intersección de la curva $h_{X_{VS}typ}(q_e)$ y el nivel de 3m es el punto de operación más probable. 
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.7\textwidth]{tarea1/img/ej1-caracteristicaestatica.eps}

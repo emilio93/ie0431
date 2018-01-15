@@ -1,4 +1,23 @@
+\begin{ejercicio}
+  \begin{itemize}
+    \item 
+    Se tiene un fluido refrigerante, por lo que cuando la válvula está completamente abierta, se asume que el sistema baja su temperatura.\\\par
 
-  \begin{ejercicio}
+    \textbf{Caso NA}\par
+    Cuando la temperatura($y(s)$) aumenta sobre su valor de referencia, el control debe encargarse de enfriar el sistema, esto es aumentar el flujo $m(s)$, por lo que envia una señal para aumentar el flujo del refrigerante, lo que es disminuir $u(s)$, abriendo la válvula y por ende aumentando el fluido, como es deseado, se tiene entonces un proceso de acción inversa (+1).
 
-  \end{ejercicio}
+    \begin{equation*}
+      y(s) \mspace{6mu} \nearrow  \quad \Rightarrow \quad  m(s) \mspace{6mu} \nearrow  \quad \Rightarrow \quad  u(s) \searrow \quad \Rightarrow \quad \text{Acción Inversa (+1)}
+    \end{equation*}
+
+    \textbf{Caso NC}\par
+    Cuando la temperatura($y(s)$) aumenta sobre su valor de referencia, el control debe encargarse de enfriar el sistema, esto es aumentar el flujo $m(s)$, por lo que envia una señal para aumentar el flujo del refrigerante, lo que es aumentar $u(s)$, abriendo la válvula y por ende aumentando el fluido, como es deseado, se tiene entonces un proceso de acción directa (-1).
+
+    \begin{equation*}
+      y(s) \mspace{6mu} \nearrow  \quad \Rightarrow \quad  m(s) \mspace{6mu} \nearrow  \quad \Rightarrow \quad  u(s) \nearrow \quad \Rightarrow \quad \text{Acción Directa (-1)}
+    \end{equation*}
+
+  \item
+  Diagrama
+  \end{itemize}
+\end{ejercicio}

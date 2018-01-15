@@ -2,6 +2,10 @@
     
     \node [name=entrada] {};
 
+    \draw [color=blue!70!black!40!white, thick]  (entrada) ++(4.4,-0.85) rectangle ++(8.9,2.8) node (l1) [above] {Planta, Sensor} (l1) node [above] {Actuador,};
+
+    \draw [color=green!70!black!40!white, thick]  (entrada) ++(6.6,-0.65) rectangle ++(5.2,2.5) node (l1) [below left] {Proceso} (l1) node [above] {};
+
     \draw [->] (entrada) node [left] {$r(s)$} -- ++(.8,0) node (suma1) {};
 
     \draw [->] (suma1) ++(0.2cm, 0) node (suma1centro) {} circle (0.2cm);
@@ -49,4 +53,8 @@
     \fill (kt) ++(1.4,0) circle (0.05cm);
     \draw [->] (kt) ++(1.4,0)  -- ++(0,-1) -- ++(-12.5,0) -- ++(0,0.8);
     
+    %\draw [color=orange!70!black, thick]  (entrada) ++(1.6,-0.75) rectangle ++(4.6,1.5) node [above left] {Controlador};
+
+
+
 \end{tikzpicture}
