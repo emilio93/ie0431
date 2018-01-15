@@ -1,0 +1,74 @@
+\begin{tikzpicture}
+    
+    \node [name=entrada] {};
+
+    \draw [->] (entrada) node [above right] {$r(s)$} -- ++(1,0) node (suma1) {};
+
+    \draw [->] (suma1) ++(0.2cm, 0) node (suma1centro) {} circle (0.2cm);
+    \draw (suma1centro) ++(-0.3,0.2) node {\footnotesize$+$};
+    \draw (suma1centro) ++(-0.2,-0.3) node {\footnotesize$-$};
+
+    \draw [->] (suma1centro) ++(0.2,0) -- ++(.6,0) node [above] {$e(s)$} -- ++(.6,0) node (controlador) {};
+
+    \draw (controlador) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (controlador) ++(0.5,0) node {$C(s)$};
+
+    \draw [->] (controlador) ++(1,0) -- ++(.6,0) node [above] {$u(s)$} -- ++(.6,0) node (suma2) {};
+
+    \draw [->] (suma2) ++(0.2cm, 0) node (suma2centro) {} circle (0.2cm);
+    \draw (suma2centro) ++(-0.3,0.2) node {\footnotesize$+$};
+    \draw (suma2centro) ++(0.2,0.3) node {\footnotesize$+$};
+
+    \draw [->] (suma2centro) ++(0,2.6) node [above] {$X_{VS}(s)$} -- ++(0,-0.6) node (k2) {};
+    \draw (k2) ++(-.7,0) rectangle ++(1.4,-1.2);
+    \draw (k2) ++(0,-0.6) node {$\frac{K_{2}}{K_{VC}K_1}$};
+    \draw [->] (k2) ++(0,-1.2) -- ++(0,-.6);
+
+    \draw [->] (suma2centro) ++(0.2, 0) -- ++(.8,0) node (proceso) {};
+
+    \draw (proceso) ++(0, -0.5) rectangle ++(2,1);
+    \draw (proceso) ++(1,0) node {$\frac{K_{VC}K_1K_T}{Ts+1}$};
+
+    \draw [->] (proceso) ++(2, 0) -- ++(1,0) node [above left] {$y(s)$};
+
+    \fill (proceso) ++(2.5,0) circle (0.05cm);
+    \draw [->] (proceso) ++(2.5,0)  -- ++(0,-1) -- ++(-7.3,0) -- ++(0,0.8);
+
+    
+    
+    
+    \draw [->] (entrada) ++(10,0) node [above right] {$r(s)$} -- ++(1,0) node (suma12) {};
+
+    \draw [->] (suma12) ++(0.2cm, 0) node (suma1centro2) {} circle (0.2cm);
+    \draw (suma1centro2) ++(-0.3,0.2) node {\footnotesize$+$};
+    \draw (suma1centro2) ++(-0.2,-0.3) node {\footnotesize$-$};
+
+    \draw [->] (suma1centro2) ++(0.2,0) -- ++(.6,0) node [above] {$e(s)$} -- ++(.6,0) node (controlador2) {};
+
+    \draw (controlador2) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (controlador2) ++(0.5,0) node {$C(s)$};
+
+    \draw [->] (controlador2) ++(1,0) -- ++(.6,0) node [above] {$u(s)$} -- ++(.6,0) node (suma22) {};
+
+    \draw [->] (suma22) ++(0.2cm, 0) node (suma2centro2) {} circle (0.2cm);
+    \draw (suma2centro2) ++(-0.3,0.2) node {\footnotesize$+$};
+    \draw (suma2centro2) ++(0.2,0.3) node {\footnotesize$+$};
+
+    \draw [->] (suma2centro2) ++(0,2.2) node [above] {$X_{VS}(s)$} -- ++(0,-0.6) node (k22) {};
+    \draw (k22) ++(-.5,0) rectangle ++(1,-.8);
+    \draw (k22) ++(0,-0.4) node {$K_D$};
+    \draw [->] (k22) ++(0,-.8) -- ++(0,-.6);
+
+    \draw [->] (suma2centro2) ++(0.2, 0) -- ++(.8,0) node (proceso2) {};
+
+    \draw (proceso2) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (proceso2) ++(.5,0) node {$\frac{K_P}{Ts+1}$};
+
+    \draw [->] (proceso2) ++(1, 0) -- ++(1,0) node [above left] {$y(s)$};
+
+    \fill (proceso2) ++(1.5,0) circle (0.05cm);
+    \draw [->] (proceso2) ++(1.5,0)  -- ++(0,-1) -- ++(-6.3,0) -- ++(0,0.8);
+
+    \draw (entrada) ++(10,-2) node [above right] {$K_D = \frac{K_2}{K_{VC} K_1}\quad,\quad K_P = K_{VC} K_1 K_T$};
+    
+\end{tikzpicture}
