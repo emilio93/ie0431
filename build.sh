@@ -11,7 +11,7 @@ for tarea in ./trabajo/*.tex; do
     if [ $ARG1 == "-matlab" ]; then
         echo "cd ${tarea/\.tex/}"
         cd ${tarea/\.tex/}
-        
+        mkdir -p img
         for filename in ./*.m; do
             echo "matlab -nodisplay -nodesktop \\"
             echo "-r \"run ${filename}\""

@@ -25,7 +25,7 @@ Qemin=qe_h_val(Xvsmin,Hmin)
 Qetyp=qe_h_val(Xvstyp,Htyp)
 Qemax=qe_h_val(Xvsmax,Hmax)
 
-figure
+figure('rend','painters','pos',[10 10 360 240])
 
 plot(qe_vec(),y1,qe_vec(),y2,qe_vec(),y3,qe_vec(),ymin,qe_vec(),ytyp,qe_vec(),ymax)
 title('Característica Estática')
@@ -35,11 +35,11 @@ legend('h_{X_{VS}min}(q_e)','h_{X_{VS}typ}(q_e)', 'h_{X_{VS}max}(q_e)','Location
 
 ylim([2.4,3.6])
 xlim([0.07,0.14])
-saveas(gcf,'ej1-caracteristicaestaticazoom','epsc')
+saveas(gcf,'img/ej1-caracteristicaestaticazoom','epsc')
 
 ylim([0,3.6])
 xlim([0,0.14])
-saveas(gcf,'ej1-caracteristicaestatica','epsc')
+saveas(gcf,'img/ej1-caracteristicaestatica','epsc')
 
 
 %
@@ -59,14 +59,14 @@ ydertyp=qe_der_val(Xvstyp,Qetyp)+0*qe_vec();
 ydermax=qe_der_val(Xvsmax,Qemin)
 ydermax=qe_der_val(Xvsmax,Qemin)+0*qe_vec();
 
-figure
+
 
 plot(qe_vec(),y1der,qe_vec(),y2der,qe_vec(),y3der,qe_vec(),ydermin,qe_vec(),ydertyp,qe_vec(),ydermax)
 xlim([Qemin,Qemax])
 
 title('Derivada Característica Estática')
 legend('dh_{X_{VS}min}(q_e)/dq_e','dh_{X_{VS}typ}(q_e)/dq_e', 'dh_{X_{VS}max}(q_e)/dq_e','Location','northeastoutside','Orientation','vertical')
-saveas(gcf,'ej1-dercaracteristicaestatica','epsc')
+saveas(gcf,'img/ej1-dercaracteristicaestatica','epsc')
 
 exit
 

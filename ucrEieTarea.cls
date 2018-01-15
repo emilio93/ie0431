@@ -42,6 +42,7 @@
 \RequirePackage{tikzscale}
 
 \RequirePackage{circuitikz}
+\RequirePackage{subcaption}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[spanish]{babel}

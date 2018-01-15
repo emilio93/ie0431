@@ -1,0 +1,184 @@
+\begin{ejercicio}
+
+  \begin{itemize}
+    \item 
+    Se tiene el proceso:
+    \begin{equation*}
+      P(s) = \frac{K}{(Ts+1)(aTs+1)}
+    \end{equation*}
+  \end{itemize}
+
+  De acuerdo al enunciado se sabe que $C(s) = K_p$(controlador tipo proporcional), por lo que la respuesta servo control es:
+
+  \begin{align*}
+    M_{yr}(s) &= \frac{K_p P(s)}{1 + K_p P(s)}
+    \\
+    M_{yr}(s) &= \frac{K_p \frac{K}{(Ts+1)(aTs+1)}}{1 + K_p \frac{K}{(Ts+1)(aTs+1)}}
+    \\
+    M_{yr}(s) &= \frac{K_p K}{(Ts+1)(aTs+1) + K_p K}
+    \\
+    M_{yr}(s) &= \frac{K_p K}{a T^2 s^2 + (1+a)Ts + (1 + K_p K)}
+    \\\
+    M_{yr}(s) &= \frac{K_p K}{s^2 + \frac{1+a}{aT}s + \frac{1 + K_p K}{aT^2}}
+  \end{align*}
+
+  De acuerdo a la forma canónica para sistemas de segundo orden se puede concluir:
+  \begin{align*}
+    \omega_n^2 &= \frac{1 + K_p K}{aT^2}
+    \\
+    2\zeta \omega_n &= \frac{1+a}{aT}
+  \end{align*}
+
+  Con estas ecuaciones se despeja el valor de $K_p$ en términos de $\zeta$:
+  \begin{align*}
+    4\zeta^2 \frac{1 + K_p K}{aT^2} &= \left(\frac{1+a}{aT}\right)^2
+    \\
+    K_p &= \frac{\frac{(1+a)^2}{4 \zeta^2 a}-1}{K}
+    \\
+    K_p &= \frac{(1+a)^2-4 \zeta^2 a}{4 \zeta^2 K a }
+  \end{align*}
+
+  Evaluando según los valores del enunciado:
+  \begin{align*}
+    K_p|_{K=1.15; T=8.5; a=0.6} &= \frac{(1+0.6)^2-4 \zeta^2 0.6}{4 \zeta^2 \times 1.15 \times 0.6}
+    \\
+    K_p|_{K=1.15; T=8.5; a=0.6} &= \frac{2.56 - 2.4 \zeta^2 }{2.76 \zeta^2 }
+  \end{align*}
+
+  Se tiene una respuesta críticamente amortiguada cuando $\zeta = 1$:
+  \begin{align*}
+    K_p|_{K=1.15; T=8.5; a=0.6; \zeta=1} &= \frac{2.56 - 2.4 \times 1^2 }{2.76 \times 1^2 } = \frac{4}{69} \approx 0.0580
+  \end{align*}
+
+  Para obtener los rangos se evalúa $K_p$ cuando $\zeta$ es mayor a 1(subamortiguada) y menor a 1(sobreamortiguado):
+  \begin{align*}
+    K_p|_{K=1.15; T=8.5; a=0.6; \zeta=1.5} &= \frac{2.56 - 2.4 \times 1.5^2 }{2.76 \times 1.5^2 } = -\frac{284}{621} \approx -0.4573
+    \\
+    K_p|_{K=1.15; T=8.5; a=0.6; \zeta=0.5} &= \frac{2.56 - 2.4 \times 0.5^2 }{2.76 \times 0.5^2 } = \frac{196}{69} \approx 2.841
+  \end{align*}
+
+  Además, se puede obtener el valor de $\zeta$ en términos de $K_p$ para corroborar el resultado:
+  \begin{align*}
+    \zeta &= \frac{1+a}{2aT\omega_n}
+    \\
+    \zeta^2 &= \frac{(1+a)^2}{4 a^2 T^2 \frac{1 + K_p K}{aT^2}}
+    \\
+    \zeta^2 &= \frac{(1+a)^2}{4 a (1 + K_p K)}
+    \\
+    \zeta &= \pm\frac{1+a}{\sqrt{4 a (1 + K_p K)}}
+  \end{align*}
+
+  Se debe cumlir que $1+K_p K > 0 \Rightarrow K_p > -1/K = -20/23 \approx -0.8696$.
+  Se utiliza un rango no negativo para $\zeta$, por lo que evaluando se obtiene:
+    \begin{align*}
+    \zeta|_{K=1.15; T=8.5; a=0.6} &= \frac{1.6}{\sqrt{2.4 + 2.76 K_p}}
+  \end{align*}
+
+  Nótese que se mantiene el requerimiento $K_p > -20/23$. Si se evalua con $K_p = 4/69$ se obtiene 1, tal como se espera. Con $K_p>4/69$ se obtiene un número menor a 1, corroborando la respuesta sobreamortiguada, entre mayor sea $K_p$, más cercano a 0 es el valor de $\zeta$. Con $-20/23<K_p<4/69$ se obtiene un valor de $\zeta$ mayor a 1, corroborando la respuesta subamortiguada, incrementando conforme se acerca al valor de $-20/23$ por el límite superior. Una vez alcanzado este valor, y conforme desciende más, no se puede decir que se tiene un sistema estable.
+
+  Por lo tanto se tienen los siguientes rangos para los distintos tipos de respuesta:
+  \begin{align*}
+    \tag{sobreamortiguada}
+    K_p > 4/69
+    \\
+    \tag{críticamente amortiguada}
+    K_p = 4/69
+    \\
+    \tag{subamortiguada}
+    -20/23 < K_p < 4/69
+    \\
+  \end{align*}
+
+  Para comprobar los rangos y las deducciones se presentan en las figuras \ref{ej5:img1}, \ref{ej5:img2}, \ref{ej5:img3}, \ref{ej5:img4} y \ref{ej5:img5} diagramas de polos y ceros para distintos valores de $K_p$.
+
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-pzmap-sis-crit.eps}
+        \caption{a}
+        \label{ej5:img1:a}
+      \end{subfigure}
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-step-sis-crit.eps}
+        \caption{b}
+        \label{ej5:img1:b}
+      \end{subfigure}
+      \caption{Diagrama de polos y ceros(\ref{ej5:img1:a}) y respuesta al escalón(\ref{ej5:img1:b}) para el caso $K_P = 4/69$, una respuesta de segundo orden críticamente amortiguada muestra sus dos polos en el mismo punto.}
+      \label{ej5:img1}
+    \end{figure}
+    
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-pzmap-sis-sub1.eps}
+        \caption{a}
+        \label{ej5:img2:a}
+      \end{subfigure}
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-step-sis-sub1.eps}
+        \caption{b}
+        \label{ej5:img2:b}
+      \end{subfigure}
+      \caption{Diagrama de polos y ceros para el caso $K_P = 4/69$, una respuesta de segundo orden críticamente amortiguada muestra sus dos polos en el mismo punto.}
+      \label{ej5:img2}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-pzmap-sis-sub2.eps}
+        \caption{a}
+        \label{ej5:img3:a}
+      \end{subfigure}
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-step-sis-sub2.eps}
+        \caption{b}
+        \label{ej5:img3:b}
+      \end{subfigure}
+      \caption{Diagrama de polos y ceros para el caso $K_P = 4/69$, una respuesta de segundo orden críticamente amortiguada muestra sus dos polos en el mismo punto.}
+      \label{ej5:img3}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-pzmap-sis-sobre1.eps}
+        \caption{a}
+        \label{ej5:img4:a}
+      \end{subfigure}
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-step-sis-sobre1.eps}
+        \caption{b}
+        \label{ej5:img4:b}
+      \end{subfigure}
+      \caption{Diagrama de polos y ceros para el caso $K_P = 4/69$, una respuesta de segundo orden críticamente amortiguada muestra sus dos polos en el mismo punto.}
+      \label{ej5:img4}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-pzmap-sis-sobre2.eps}
+        \caption{a}
+        \label{ej5:img5:a}
+      \end{subfigure}
+      \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{tarea1/img/ej5-step-sis-sobre2.eps}
+        \caption{b}
+        \label{ej5:img5:b}
+      \end{subfigure}
+      \caption{Diagrama de polos y ceros para el caso $K_P = 4/69$, una respuesta de segundo orden críticamente amortiguada muestra sus dos polos en el mismo punto.}
+      \label{ej5:img5}
+    \end{figure}
+
+\end{ejercicio}

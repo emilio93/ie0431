@@ -6,7 +6,7 @@
         \label{img:ejercicio1}
     \end{figure}
   \end{ejercicio}
-  \begin{enumerate}
+  \begin{itemize}
     \item 
     Se obtiene la señal de salida $y(s)$ en términos de las entradas $r(s)$ y $d(s)$.
     \begin{align*}
@@ -38,37 +38,37 @@
     \end{align*}
 
     \item
-    Se obtiene la función de transferencia de servo-control es:
-    \begin{align*}
-      y_{r}(s) &= y(s)|_{d(s)=0} = \frac{P(s) C(s) r(s)}{1 + C(s) P(s)}
-    \end{align*}
+    \begin{itemize}
 
-    \begin{equation*}
-      \tag{Función de Transferencia del servo control}
-      M_{yr}(s) = \frac{y_r(s)}{r(s)} = \frac{C(s) P(s)}{1 + C(s) P(s)}
-    \end{equation*}
+      \item 
+      Se obtiene la función de transferencia de servo-control:
+      \begin{align*}
+        y_{r}(s) &= y(s)|_{d(s)=0} = \frac{P(s) C(s) r(s)}{1 + C(s) P(s)}
+      \end{align*}
 
-    Se obtiene la función de transferencia de control regulatorio es:
-    \begin{align*}
-      y_{d}(s) &= y(s)|_{r(s)=0} = \frac{P(s) d(s) }{1 + C(s) P(s)}
-    \end{align*}
+      \begin{equation*}
+        \tag{Función de Transferencia del servo control}
+        M_{yr}(s) = \frac{y_r(s)}{r(s)} = \frac{C(s) P(s)}{1 + C(s) P(s)}
+      \end{equation*}
 
-    \begin{equation*}
-      \tag{Función de Transferencia del control regulatorio}
-      M_{yd}(s) = \frac{y_d(s)}{d(s)} = \frac{P(s)}{1 + C(s) P(s)}
-    \end{equation*}
+      \item
+      Se obtiene la función de transferencia de control regulatorio:
+      \begin{align*}
+        y_{d}(s) &= y(s)|_{r(s)=0} = \frac{P(s) d(s) }{1 + C(s) P(s)}
+      \end{align*}
 
-    Se obtiene la función de sensibilidad es:
-    \begin{align*}
-      y_{rs}(s) &= \frac{r(s) C(s) P(s)}{1 + C(s) P(s)}  
-      \\
-      y_{}(s) &= \frac{d(s) P(s)}{1 + C(s) P(s)}
-    \end{align*}
+      \begin{equation*}
+        \tag{Función de Transferencia del control regulatorio}
+        M_{yd}(s) = \frac{y_d(s)}{d(s)} = \frac{P(s)}{1 + C(s) P(s)}
+      \end{equation*}
 
-    La función de sensibilidad complementaria es:
+      \item
+      Se obtiene la función de sensibilidad:
 
-
-  \end{enumerate}
+      \item
+      La función de sensibilidad complementaria:
+    \end{itemize}
+  \end{itemize}
 
 
 
