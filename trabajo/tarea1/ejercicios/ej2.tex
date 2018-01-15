@@ -1,0 +1,74 @@
+  \begin{ejercicio}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{tarea1/control-realimentado.tikz}
+        \caption{Sistema de control realimentado simple.}
+        \label{img:ejercicio1}
+    \end{figure}
+  \end{ejercicio}
+  \begin{enumerate}
+    \item 
+    Se obtiene la señal de salida $y(s)$ en términos de las entradas $r(s)$ y $d(s)$.
+    \begin{align*}
+      y(s) &= P(s) \left[ d(s) + C(s) \left( r(s) - y(s) \right) \right]
+      \\
+      y(s) \left[ 1 + C(s) P(s) \right] &= P(s) \left[ d(s) + r(s) C(s) \right]
+      \\
+      y(s) &= \frac{P(s) \left[ d(s) + r(s) C(s) \right]}{1 + C(s) P(s)}
+    \end{align*}
+
+    \item
+    Se obtiene la señal de control $u(s)$ en términos de las entradas $r(s)$ y $d(s)$.
+    \begin{align*}
+      u(s) &= C(s) \left[ r(s) - P(s) \left[ u(s) + d(s) \right] \right]
+      \\
+      u(s) \left[ 1 + C(s) P(s) \right] &= C(s) \left[ r(s) - P(s) d(s) \right]
+      \\ \\
+      u(s) &= \frac{C(s) \left[ r(s) - P(s) d(s) \right]}{1 + C(s) P(s)}
+    \end{align*}
+
+    \item
+    Se obtiene la señal de error $e(s)$ en términos de las entradas $r(s)$ y $d(s)$.
+    \begin{align*}
+      e(s) &= r(s) - P(s) \left[ d(s) + e(s) C(s) \right]
+      \\
+      e(s) \left[ 1 + C(s) P(s) \right] &= r(s) - P(s) d(s)
+      \\ \\
+      e(s) &= \frac{r(s) - P(s) d(s)}{1 + C(s) P(s)}
+    \end{align*}
+
+    \item
+    Se obtiene la función de transferencia de servo-control es:
+    \begin{align*}
+      y_{r}(s) &= y(s)|_{d(s)=0} = \frac{P(s) C(s) r(s)}{1 + C(s) P(s)}
+    \end{align*}
+
+    \begin{equation*}
+      \tag{Función de Transferencia del servo control}
+      M_{yr}(s) = \frac{y_r(s)}{r(s)} = \frac{C(s) P(s)}{1 + C(s) P(s)}
+    \end{equation*}
+
+    Se obtiene la función de transferencia de control regulatorio es:
+    \begin{align*}
+      y_{d}(s) &= y(s)|_{r(s)=0} = \frac{P(s) d(s) }{1 + C(s) P(s)}
+    \end{align*}
+
+    \begin{equation*}
+      \tag{Función de Transferencia del control regulatorio}
+      M_{yd}(s) = \frac{y_d(s)}{d(s)} = \frac{P(s)}{1 + C(s) P(s)}
+    \end{equation*}
+
+    Se obtiene la función de sensibilidad es:
+    \begin{align*}
+      y_{rs}(s) &= \frac{r(s) C(s) P(s)}{1 + C(s) P(s)}  
+      \\
+      y_{}(s) &= \frac{d(s) P(s)}{1 + C(s) P(s)}
+    \end{align*}
+
+    La función de sensibilidad complementaria es:
+
+
+  \end{enumerate}
+
+
+

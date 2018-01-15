@@ -9,6 +9,14 @@
             "command": "pdflatex -aux-directory='texaux' -enable-8bit-chars -enable-installer -job-name='Salida' -include-directory='clases' -output-directory='build' documento.tex"
         },
         {
+            "label": "matlab pdflatex linux",
+            "type": "shell",
+            "command": "./build.sh -matlab",
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
             "label": "pdflatex linux",
             "type": "shell",
             "command": "./build.sh",

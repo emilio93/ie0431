@@ -9,4 +9,5 @@ texaux
 *.gz
 *.out
 
+*.eps
 *eps-converted-to.pdf

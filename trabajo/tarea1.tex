@@ -1,13 +1,14 @@
 \documentclass{ucrEieTarea}
 
-\usepackage{sansmathfonts}
-\usepackage{environ}
-\usepackage{varwidth}
+\usepackage{sansmathfonts} 
 
+\pgfplotsset{compat=1.15}
 \graphicspath{{./trabajo/}}
 
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
-    
+
+\renewcommand{\theenumi}{\large\bfseries\alph{enumi}}
+
 \begin{document}
   \portadaminima{Universidad de Costa Rica}
     {Escuela de Ingeniería Eléctrica}
@@ -17,76 +18,10 @@
     {Grupo 901}
     {Tarea \#1}
   
-  \begin{ejercicio}
+  \input{./trabajo/tarea1/ejercicios/ej1.tex}
 
-  La ganancia del transmisor se obtiene normalizada de 0 a 1, se hace respecto al ámbito de medición, $1/3.8m = 5/19$, lo que es un $26.3\%$.
+  \input{./trabajo/tarea1/ejercicios/ej2.tex}
   
-  A partir de la característica estática se obtiene el valor de $Q_e$ en términos de $H$ y $X_{VS}$:
-
-  \begin{align*}
-    H &=\frac{1}{\rho g} \left( \frac{Q_e}{X_{VS}K_{VS}} \right)
-    \\
-    Q_e &= X_{VS} K_{VS}\sqrt{\rho g H}
-  \end{align*}
-
-  Con esto se averigüa los valores máximo y mínimo para el caudal de entrada según los valores en el enunciado según corresponda.
-
-  \begin{align*}
-    Q_{emin} &= 0.4 \times 0.001 \times \sqrt{1475\times9.81\times2.5} \approx 0.0761
-    \\
-    Q_{emax} &= 0.5 \times 0.001 \times \sqrt{1475\times9.81\times3.5} \approx 0.1350
-  \end{align*}
-
-
-
-
-
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{tarea1/ej1-caracteristicaestatica.eps}
-    \end{figure}
-
-        \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{tarea1/ej1-caracteristicaestaticazoom.eps}
-    \end{figure}
-  \end{ejercicio}
-  
-  \begin{ejercicio}
-    \begin{figure}[H]
-        \centering
-        \includegraphics{tarea1/control-realimentado.tikz}
-        \caption{Sistema de control realimentado simple.}
-        \label{img:ejercicio1}
-    \end{figure}
-  \end{ejercicio}
-
-  Se obtiene la señal de salida $y(s)$ en términos de las entradas $r(s)$ y $d(s)$.
-  \begin{align*}
-    y(s) &= P(s) \left[ d(s) + C(s) \left( r(s) - y(s) \right) \right]
-    \\
-    y(s) \left[ 1 + C(s) P(s) \right] &= P(s) \left[ d(s) + r(s) C(s) \right]
-    \\ \\
-    y(s) &= \frac{P(s) \left[ d(s) + r(s) C(s) \right]}{1 + C(s) P(s)}
-  \end{align*}
-
-  Se obtiene la señal de control $u(s)$ en términos de las entradas $r(s)$ y $d(s)$.
-  \begin{align*}
-    u(s) &= C(s) \left[ r(s) - P(s) \left[ u(s) + d(s) \right] \right]
-    \\
-    u(s) \left[ 1 + C(s) P(s) \right] &= C(s) \left[ r(s) - P(s) d(s) \right]
-    \\ \\
-    u(s) &= \frac{C(s) \left[ r(s) - P(s) d(s) \right]}{1 + C(s) P(s)}
-  \end{align*}
-
-  Se obtiene la señal de error $e(s)$ en términos de las entradas $r(s)$ y $d(s)$.
-  \begin{align*}
-    e(s) &= r(s) - P(s) \left[ d(s) + e(s) C(s) \right]
-    \\
-    e(s) \left[ 1 + C(s) P(s) \right] &= r(s) - P(s) d(s)
-    \\ \\
-    e(s) &= \frac{r(s) - P(s) d(s)}{1 + C(s) P(s)}
-  \end{align*}
 
 
   \begin{ejercicio}
