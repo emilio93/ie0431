@@ -1,6 +1,8 @@
 \begin{ejercicio}
-  Se utilizan los parámetros para la equivalencia de los parámetros. Primeramente para pasar de PID en serie de 2GdL a uno estandard.
 
+\begin{itemize}
+  \item 
+  Se utilizan los parámetros para la equivalencia de los parámetros. Primeramente para pasar de PID en serie de 2GdL a uno estandard.
   \begin{align*}
     F_C^{'} &= 1 + \frac{(1-\alpha^{'})T_d^{'}}{T_i^{'}}
     &
@@ -15,12 +17,11 @@
     \beta &= \frac{\beta^{'}}{F_C^{'}}
   \end{align*}
 
-Para los valores del enunciado se tienen los parámetros equivalentes para un controlador PID estandard de 2GdL:
-
+  Para los valores del enunciado se tienen los parámetros equivalentes para un controlador PID estandard de 2GdL:
   \begin{align*}
     F_C^{'} &= 1 + \frac{0.6(1-0.1)}{1.9} = \frac{122}{95} \approx 1.2842
     &
-    K_p &= \frac{122}{95}\times 2.3 = \frac{1403}{475} \approx 1.9537
+    K_p &= \frac{122}{95}\times 2.3 = \frac{1403}{475} \approx 2.9537
     \\\\
     T_i &= \frac{122}{95}\times 1.9 = \frac{61}{25} = 2.44
     &
@@ -28,23 +29,92 @@ Para los valores del enunciado se tienen los parámetros equivalentes para un co
     \\\\
     \alpha &= \frac{\frac{122}{95} \times 0.1}{1-\frac{122}{95} \times 0.1} = \frac{61}{414} \approx 0.1473
     &
-    \beta &= \frac{1.1}{\frac{122}{95}} = \frac{19}{4} = 4.75
+    \beta &= \frac{1.1}{\frac{122}{95}} = \frac{209}{244} = 0.8566
   \end{align*}
 
-Utilizando los parámetros del PID estandard de 2GdL se puede pasar a los parámetros para un PID en paralelo de 2GdL:
-
+  Utilizando los parámetros del PID estandard de 2GdL se puede pasar a  los parámetros para un PID en paralelo de 2GdL:
   \begin{align*}
-    F_C^{'} &= 1 + \frac{(1-\alpha^{'})T_d^{'}}{T_i^{'}}
+    K_P &= K_P
     &
-    K_p &= F_C^{'} K_P^{'} 
+    K_i &= \frac{K_P}{T_I}
     &
-    T_i &= F_C^{'} T_i^{'}
+    K_d &= K_P T_d 
     \\
-    T_d &= \frac{(1-\alpha^{'} F_C^{'}) T_d^{'}}{F_C^{'}}
+    \alpha_P &= \frac{\alpha}{K_P}
     &
-    \alpha &= \frac{F_C^{'}  \alpha^{'}}{1-F_C^{'}  \alpha^{'}}, \alpha^{'} <1+\frac{T_i^{'}}{T_d^{'}}
-    &
-    \beta &= \frac{\beta^{'}}{F_C^{'}}
+    \beta_P &= \beta
   \end{align*}
+
+  Para los valores del PID estandard de 2GdL obtenidos se tienen los parámetros equivalentes para un controlador PID en paralelo de 2GdL:
+    \begin{align*}
+    K_P &= \frac{1403}{475} \approx 2.9537
+    &
+    K_i &= \frac{\frac{1403}{475}}{2.44} = \frac{23}{19} \approx 1.2105
+    \\
+    K_d &= \frac{1403}{475} \times \frac{621}{1525} \approx 1.2028
+    &
+    \alpha_P &= \frac{\frac{61}{414}}{\frac{1403}{475}} =\frac{475}{9522} \approx 0.0499
+    \\
+    \beta_P &= \frac{209}{244} = 0.8566
+  \end{align*}
+
+  \item
+  Utilizando los parámetros del PID en paralelo de 2GdL se puede pasar a los parámetros para un PID estandard de 2GdL:
+  \begin{align*}
+    K_P &= K_P
+    &
+    T_i &= \frac{K_P}{K_i}
+    &
+    T_d &= \frac{K_d}{K_P}
+    \\
+    \alpha &= \aplpha_P K_P
+    &
+    \beta &= \beta_P
+  \end{align*}
+
+  Para los valores del PID en paralelo de 2GdL obtenidos se tienen los parámetros equivalentes para un controlador PID estandard de 2GdL:
+  \begin{align*}
+    K_P &= \frac{1403}{475} \approx 2.9537
+    &
+    T_i &= \frac{\frac{1403}{475}}{\frac{23}{19}} = \frac{61}{25} = 2.44
+    \\
+    T_d &= \frac{\frac{621}{1525}}{\frac{1403}{475}} = \frac{621}{1525} \approx 0.4072
+    &
+    \alpha &= \frac{475}{9522} \times \frac{1403}{475} = \frac{61}{414} \approx 0.1473
+    \\
+    \beta &= \frac{209}{244} = 0.8566
+  \end{align*}
+
+  Finalmente se utilizan las equivalencias para pasar parámetros de un PID estandard de 2GdL a uno en serie.
+  \begin{align*}
+    F_C &= \frac{1}{2}\left[ 1+ \frac{\alpha T_d}{T_i} + \sqrt{1-\frac{(4+2\alpha)T_d}{T_i} + \frac{\alpha^2T_d^2}{T_i^2}} \right]
+    &
+    K_P^{'} &= F_C K_P
+    &
+    T_i^{'} &= F_C T_i
+    \\
+    T_d^{'} &= \frac{(1+\alpha)T_d}{F_C}
+    &
+    \alpha^{'} &= \frac{\alpha F_C}{1+\alpha}
+    &
+    \beta^{'} &= \frac{\beta}{F_C}
+  \end{align*}
+
+  Se sustituyen los valores para obtener los parámetros del PID en serie de 2GdL correspondiente al PID estandard obtenido previamente.
+  \begin{align*}
+    F_C &= \frac{1}{2}\left[ 1+ \frac{\frac{61}{414}\times \frac{621}{1525}}{2.44} + \sqrt{1-\frac{(4+2\frac{61}{414})\times \frac{621}{1525}}{2.44} + \frac{\left(\frac{61}{414}\right)^2\left(\frac{621}{1525}\right)^2}{2.44^2}} \right] = \frac{95}{122} \approx 0.7787
+  \end{align*}
+  \begin{align*}
+    K_P^{'} &= \frac{95}{122} \times \frac{1403}{475} = 2.3
+    &
+    T_i^{'} &= \frac{95}{122} \times 2.44 = 1.9
+    \\
+    T_d^{'} &= \frac{(1+\frac{61}{414})\frac{621}{1525}}{\frac{95}{122}} = 0.6
+    &
+    \alpha^{'} &= \frac{\frac{61}{414} \times \frac{95}{122}}{1+\frac{61}{414}} = 0.1
+    \\
+    \beta^{'} &= \frac{\frac{209}{244}}{\frac{95}{122}} = 1.1
+  \end{align*}
+\end{itemize}
 
 \end{ejercicio}
