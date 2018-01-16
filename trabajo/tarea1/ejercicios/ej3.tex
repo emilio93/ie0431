@@ -18,6 +18,12 @@
     \end{equation*}
 
   \item
-  Diagrama
+  En la figura \ref{ej3:diag1} se muestra el diagrama de bloques del sistema analizado. El recuadro rojo muestra el controlador, mientras que el cuadro verde muestra el proceso controlado. La señal resultante de la resta $r(s) - y(s)$ es la señal de error $e(s)$. La señal resultante del controlador $u(s)$ se encuentra normalizada, por lo que es multiplicada por $K_{VC}$ para obtener el valor deseado de la variable manipulada $m(s)$, el flujo del refrigerante, este pasa a través del proceso, al sistema se le mide la temperatura $T(s)$, y se normaliza con el factor $K_T$, para obtener la señal normalizada de retroalimentación.
+  \begin{figure}[H]
+      \centering
+      \includegraphics{tarea1/tikz/control-realimentado-termico.tikz}
+      \caption{Diagrama del sistema con el proceso completo.}
+      \label{ej3:diag1}
+    \end{figure}
   \end{itemize}
 \end{ejercicio}

@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+    
+    \node [name=entrada] {};
+
+    \draw [color=green!70!black!40!white, thick]  (entrada) ++(5.5,-0.75) rectangle ++(6.8,1.5) node (l1) [below left] {} (l1) node [above] {};
+
+    \draw [color=red!70!black!40!white, thick]  (entrada) ++(.5,-0.75) rectangle ++(4,1.5) node (l1) [below left] {} (l1) node [above] {};
+
+    \draw [->] (entrada) node [left] {$r(s)$} -- ++(1.2,0) node (suma1) {};
+
+    \draw [->] (suma1) ++(0.2cm, 0) node (suma1centro) {} circle (0.2cm);
+    \draw (suma1centro) ++(-0.3,0.2) node {\footnotesize$+$};
+    \draw (suma1centro) ++(-0.2,-0.3) node {\footnotesize$-$};
+
+    \draw [->] (suma1centro) ++(0.2,0) -- ++(.8,0) node [above] {$e(s)$} -- ++(.8,0) node (controlador) {};
+
+    \draw (controlador) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (controlador) ++(0.5,0) node {$C(s)$};
+
+    \draw [->] (controlador) ++(1,0) -- ++(.8,0) node [above] {$u(s)$} -- ++(.8,0) node (kvc) {};
+
+    \draw (kvc) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (kvc) ++(0.5,0) node {$K_{VC}$};
+
+    \draw [->] (kvc) ++(1,0) -- ++(.8,0) node [above] {$m(s)$} -- ++(.8,0) node (proceso) {};
+
+    \draw (proceso) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (proceso) ++(0.5,0) node {$P(s)$};
+
+    \draw [->] (proceso) ++(1, 0) -- ++(.8,0) node [above] {$T(s)$} -- ++(.8,0) node (kt) {};
+
+    \draw (kt) ++(0, -0.4) rectangle ++(1,.8);
+    \draw (kt) ++(0.5,0) node {$K_T$};
+
+    \draw [->] (kt) ++(1, 0) -- ++(1.2,0) node [right] {$y(s)$};
+
+    \fill (kt) ++(1.6,0) circle (0.05cm);
+    \draw [->] (kt) ++(1.6,0)  -- ++(0,-1) -- ++(-11.3,0) -- ++(0,0.8);
+\end{tikzpicture}
