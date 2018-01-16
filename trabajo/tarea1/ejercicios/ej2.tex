@@ -64,9 +64,32 @@
 
       \item
       Se obtiene la función de sensibilidad:
+      \begin{align*}
+        S_P^{M_{yr}}(s) &= \frac{P}{M_{yr}} \frac{\partial M_{yr}}{\partial P} 
+          =
+          \frac{P(s)}{\frac{C(s) P(s)}{1 + C(s) P(s)}} 
+          \frac{\partial \frac{C(s) P(s)}{1 + C(s) P(s)}}{\partial P} 
+          \\
+        S_P^{M_{yr}}(s) &=
+          \frac{P(s)(1 + C(s) P(s))}{C(s) P(s)} \cdot
+          \frac{C(s)(1 + C(s) P(s)) - C^2(s)P(s)}{(1 + C(s) P(s))^2}
+          \\
+        S_P^{M_{yr}}(s) &=
+          \frac{P(s)}{C(s) P(s)} \cdot
+          \frac{C(s)\left[(1 + C(s) P(s)) - C(s)P(s)\right]}{1 + C(s) P(s)}
+          \\
+        S_P^{M_{yr}}(s) &=
+          \frac{(1 + C(s) P(s)) - C(s)P(s)}{1 + C(s) P(s)} =
+          \frac{1}{1 + C(s) P(s)}
+      \end{align*}
 
       \item
       La función de sensibilidad complementaria:
+      \begin{align*}
+        T(s) &= 1 - S_P^{M_{yr}}(s)
+        \\
+        T(s) &= 1 - \frac{1}{1 + C(s) P(s)} = \frac{1-(1+C(s)P(s))}{1 + C(s) P(s)} = \frac{C(s) P(s)}{1 + C(s) P(s)}
+      \end{align/}
     \end{itemize}
   \end{itemize}
 
