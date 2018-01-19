@@ -6,7 +6,8 @@ cwd="$(pwd)"
 
 echo "mkdir -p build"
 mkdir -p build
-for tarea in ./trabajo/*.tex; do
+# for tarea in ./trabajo/*.tex; do
+for tarea in "./trabajo/tarea2.tex"; do
 
     if [ $ARG1 == "-matlab" ]; then
         echo "cd ${tarea/\.tex/}"
@@ -32,8 +33,11 @@ for tarea in ./trabajo/*.tex; do
         echo "-8bit ${tarea} \\"
         echo "| grep -E \"l\.[0-9]*\s+|!  ==>|!\ LaTeX\ Error|!\ LaTeX\ Warning|Package|Output written|Transcript written\" "
         echo ""
+        jobname=${tarea/\.tex/}
+        jobname=${jobname/\.\/trabajo\//}
+        
         pdflatex -shell-escape -interaction=nonstopmode \
-        -jobname=Tarea1 -output-directory=build \
+        -jobname=${jobname} -output-directory=build \
         -8bit ${tarea} \
         | grep -E "l\.[0-9]*\s+|!  ==>|!\ LaTeX\ Error|!\ LaTeX\ Warning|Package|Output written|Transcript written" 
     done

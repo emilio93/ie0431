@@ -24,6 +24,14 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "clean linux",
+            "type": "shell",
+            "command": "rm -r -f build;rm -f ./trabajo/**/img/*-eps-converted-to.pdf",
+            "group": {
+                "kind": "clean"
+            }
         }
     ]
 }
