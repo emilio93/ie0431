@@ -1,0 +1,127 @@
+\begin{ejercicio}
+  \begin{figure}[H]
+      \centering
+      \includegraphics{tarea1/tikz/control-realimentado.tikz}
+      \caption{Sistema de control realimentado simple.}
+      \label{img:ejercicio1}
+  \end{figure}
+
+  Se utiliza el teorema del valor final en la señal de error $e(s)$ cuando el controlador funciona como control regulatorio para obtener el error permanente $e_d(s)$.
+
+  \begin{align*}
+    e(s) &= r(s) - P(s)\left[d(s)+e(s) C(s)\right]
+    \\ \tag{Señal de error}
+    e(s) &= \frac{r(s) - P(s)d(s)}{1+C(s) P(s)}
+    \\ \tag{Error de control regulatorio}
+    e_d(s) &= \frac{-P(s) d(s)}{1+C(s)P(s)}
+    \\ \tag{Teorema del valor final}
+    e_{pd} &= \lim_{s\rightarrow 0} s e_d(s)
+  \end{align*}
+
+  Se sabe que en régimen permanente solo interesan las señales con frecuencia 0, debido a esto se pueden obviar los polos que no estén en el origen. Se utilizan las siguientes definiciones para controladores y procesos.
+  \begin{align*}
+    P(s) &= \frac{K}{s^{np}}P^{'}(s) & P^{'}(s) =& \frac{\Pi_{i=1}^{k}(T_i s +1)}{\Pi_{j=1}^{m}(T_j s +1)}
+    \\
+    C(s) &= \frac{K_p}{s^{nc}}C^{'}(s) & C^{'}(s) =& \frac{\Pi_{i=1}^{l}(T_i s +1)}{\Pi_{j=1}^{n}(T_j s +1)}
+  \end{align*}
+
+  \begin{align*}
+    e_{pd} &= \lim_{s\rightarrow 0} s \frac{-\frac{K}{s^{np}}P^{'}(s) d(s)}
+    {1+ \frac{K_p}{s^{nc}}C^{'}(s) \frac{K}{s^{np}}P^{'}(s)}
+    \\
+    e_{pd} &= \lim_{s\rightarrow 0} s \frac{-K P^{'}(s) d(s)}
+    {s^{np} + s^{-nc} K_p K C^{'}(s) P^{'}(s)}
+  \end{align*}
+
+  Se utiliza una perturbación general del tipo $d(s)=d_m(s)=s^{-(1+m)}$.
+  \begin{align*}
+    e_{pdm} &= \lim_{s\rightarrow 0} s \frac{-K P^{'}(s) s^{-(1+m)}}
+    {s^{np} + s^{-nc} K_p K C^{'}(s) P^{'}(s)}
+    \\
+    e_{pdm} &= \lim_{s\rightarrow 0} \frac{-K P^{'}(s)}
+    {s^{m+np} + s^{m-nc} K_p K C^{'}(s) P^{'}(s)}
+    \\ \tag{error permanente ante perturbación general}
+    e_{pdm} &= \frac{-K}
+    {\lim_{s\rightarrow 0}s^{m+np} + K_p K\lim_{s\rightarrow 0} s^{m-nc}}
+  \end{align*}
+
+  Ahora se puede tomar en cuenta distintos casos:
+  \begin{itemize}
+    \item Perturbación de tipo escalón unitario $d_m(s)=1/s$($m=0$). Proceso no integrante tipo 0($np=0$), controlador de tipo 0($nc=0$).
+    \begin{align*}
+      e_{pd0} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{0+0} + K_p K\lim_{s\rightarrow 0} s^{0-0}}
+      = \frac{-K}{1 + K_p K}
+    \end{align*}
+
+    \item Perturbación de tipo escalón unitario $d_m(s)=1/s$($m=0$). Proceso no integrante tipo 0($np=0$), controlador de tipo 1($nc=1$).
+    \begin{align*}
+      e_{pd0} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{0+0} + K_p K\lim_{s\rightarrow 0} s^{0-1}}
+      =
+      \frac{-K}
+      {1 + K_p K\lim_{s\rightarrow 0} {^1/_s}}
+      =
+      0
+    \end{align*}
+    \textit{Este resultado es válido para los casos en que el controlador sea de tipo 1 o mayor y se cumplan las condiciones de perturbación $d_m(s)$ con $m=0$ y proceso no integrante de tipo 0. Nótese más generalmente que cuando $m-nc<0$ se va a tener un término que tiende a infinito, esto hace que se tenga un $e_{pdm} = 0$, no hay error permanente.}
+
+    \item
+    Perturbación de tipo escalón unitario $d_m(s)=1/s$($m=0$). Proceso integrante tipo 1($np=1$), controlador de tipo 0($nc=0$).
+    \begin{align*}
+      e_{pd0} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{0+1} + K_p K\lim_{s\rightarrow 0} s^{0-0}}
+      =
+      \frac{-K}
+      {\lim_{s\rightarrow 0}s + K_p K}
+      =
+      -\frac{1}{K_p}
+    \end{align*}
+    \textit{Este resultado es válido para los casos en que el proceso sea de tipo 1 o mayor y se cumplan las condiciones de perturbación $d_m(s)$ con $m=0$ y controlador tipo 0. En general, cuando $m+np>0, m-nc=0$ se va a tener error permanente finito.}
+
+    \item
+    Perturbación de tipo escalón unitario $d_m(s)=1/s$($m=0$). Proceso integrante tipo 1($np=1$), controlador de tipo 1($nc=1$).
+    \begin{align*}
+      e_{pd0} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{0+1} + K_p K\lim_{s\rightarrow 0} s^{0-1}}
+      =
+      \frac{-K}
+      {0 + K_p K\lim_{s\rightarrow 0} {^1/_s}}
+      =
+      0
+    \end{align*}
+    \textit{Este resultado es válido para los casos en que el proceso sea de tipo 1 o mayor y se cumplan las condiciones de perturbación $d_m(s)$ con $m=0$ y controlador tipo 1. En general, cuando $m+np>0, m-nc<0$ no se va a tener error permanente finito.}
+
+    \item
+    Perturbación de tipo rampa $d_m(s)=1/s^2$($m=1$). Proceso integrante tipo 0($np=0$), controlador de tipo 0($nc=0$).
+    \begin{align*}
+      e_{pd1} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{1+0} + K_p K\lim_{s\rightarrow 0} s^{1-0}}
+      =
+      \frac{-K}
+      {0 + K_p K\lim_{s\rightarrow 0} s} \rightarrow \infty
+    \end{align*}
+    \textit{Cuando $m\geq 1$, el primer término en el denominador se va a cancelar, por lo que el tipo de proceso no tiene efecto sobre el error permanente ante una perturbación de tipo rampa.}
+
+    \item
+    Perturbación de tipo rampa $d_m(s)=1/s^2$($m=1$). Cualquier tipo de proceso, controlador de tipo 1($nc=1$).
+    \begin{align*}
+      e_{pd1} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{1+np} + K_p K\lim_{s\rightarrow 0} s^{1-1}}
+      =
+      \frac{-1}{K_p}
+    \end{align*}
+
+        \item
+    Perturbación de tipo rampa $d_m(s)=1/s^2$($m=1$). Cualquier tipo de proceso, controlador de tipo mayor a $m$($nc>m$).
+    \begin{align*}
+      e_{pd1} &= \frac{-K}
+      {\lim_{s\rightarrow 0}s^{1+np} + K_p K\lim_{s\rightarrow 0} s^{1-nc}}
+      =
+      \frac{-K}
+      {0 + K_p K\lim_{s\rightarrow 0} 1/s^{nc-1}} = 0
+    \end{align*}
+
+  \end{itemize}
+
+\end{ejercicio}
