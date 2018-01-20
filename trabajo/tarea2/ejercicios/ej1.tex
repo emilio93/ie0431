@@ -158,6 +158,32 @@
       \end{align*}
 
       \item % c
+      Se obtienen los valores de $\zeta$ y $\omega_n$ en términos de $K_p$.
+      \begin{align*}
+        y(s) &= \frac{K_p}{s^2+2s+K_p} = \frac{K_{yr}\omega_n^2}{s^2+ 2\zeta \omega_n s + \omega_n^2}
+        \\
+        \omega_n^2 &= K_p
+        \\
+        \zeta^2 &= 1/K_p
+        \\
+        K_{yr} &= 1
+      \end{align*}
+
+      Se utiliza la fórmula para el sobrepaso máximo normalizado, se quiere que este sea de $0.15$, se despeja $K_p$ para este sobrepaso.
+      \begin{align*}
+        M_{pn} &= e^{-\pi\zeta/\sqrt{1-\zeta^2}}
+        \\
+        0.15 &= e^{-\pi/\sqrt{K_p(1-1/K_p)}} = e^{-\pi/\sqrt{K_p-1}}
+        \\
+        \ln(0.15)\sqrt{K_p-1} &= -\pi
+        \\
+        [\ln(0.15)]^2 (K_p-1) &= \pi^2
+        \\
+        K_p &= 1 + \frac{\pi^2}{[\ln(0.15)]^2}
+        \\
+        K_p &= 1 + \frac{\pi^2}{[\ln(0.15)]^2} \approx 3.7423
+      \end{align*}
+
       \item % d
       \item % e
     \end{enumerate}
