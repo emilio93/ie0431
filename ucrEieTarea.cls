@@ -38,6 +38,7 @@
 \RequirePackage{textcomp}
 
 
+\RequirePackage{enumerate}
 \RequirePackage{mathtools}
 \RequirePackage{tikzscale}
 
