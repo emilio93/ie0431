@@ -7,7 +7,7 @@ cwd="$(pwd)"
 echo "mkdir -p build"
 mkdir -p build
 # for tarea in ./trabajo/*.tex; do
-for tarea in "./trabajo/tarea2.tex"; do
+for tarea in "./trabajo/tarea3.tex"; do
 
     if [ $ARG1 == "-matlab" ]; then
         echo "cd ${tarea/\.tex/}"

@@ -1,0 +1,24 @@
+\documentclass{ucrEieTarea}
+
+\usepackage{sansmathfonts} 
+
+\pgfplotsset{compat=1.15}
+\graphicspath{{./trabajo/}}
+
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\renewcommand{\theenumi}{\large\bfseries\Alph{enumi}}
+
+\begin{document}
+  \portadaminima{Universidad de Costa Rica}
+    {Escuela de Ingeniería Eléctrica}
+    {IE0431 - Sistemas de Control}
+    {Emilio Javier Rojas Álvarez}
+    {B15680}
+    {Grupo 901}
+    {Tarea \#3\\{\footnotesize\normalfont 30 de Enero de 2018}}
+  
+  \input{./trabajo/tarea3/ejercicios/ej1.tex}
+  \input{./trabajo/tarea3/ejercicios/ej2.tex}
+
+\end{document}

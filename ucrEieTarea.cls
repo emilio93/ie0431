@@ -60,13 +60,12 @@
 \tikzset{>=latex} 
 
 
-\geometry
-  {
+\geometry{
     a4paper,
-    left=25.4mm,
-    right=25.4mm,
-    top=25.4mm,
-    bottom=25.4mm,
+    left=30mm,
+    right=30mm,
+    top=30mm,
+    bottom=38.1mm,
     heightrounded,
   }
 

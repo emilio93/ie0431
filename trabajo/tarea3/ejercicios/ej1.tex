@@ -1,0 +1,285 @@
+\begin{ejercicio}
+  \renewcommand{\theenumi}{\large\bfseries\alph{enumi}}
+  \begin{enumerate}
+
+    % a
+    \item 
+      \begin{align*}
+        L(s) &= \frac{K_p}{s(s+3)(s+5)} & L(j\omega) &= \frac{K_p/15}{(j\omega)(^{j\omega}/_3+1)(^{j\omega}/_5+1)}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &= \left|\frac{K_p}{15}\right| \frac{1}{\omega \sqrt{\omega^2/9+1}\sqrt{\omega^2/25+1}}
+        \\\\
+        \angle L(s) &= -\arctan(\omega/0) - \arctan(\omega/3) -\arctan(\omega/5)
+        \\
+        &= -90\degree - \arctan(\omega/3) -\arctan(\omega/5)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline 
+          $0^+$ & $\infty$ & $-90\degree$
+          \\
+          $\infty^+$ & $0$ & $-270\degree$
+        \end{tabular}
+      \end{center}
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+          \includegraphics[width=0.8\textwidth]{tarea3/img/a1.eps}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{tarea3/img/a2.eps}
+        \end{subfigure}
+      \end{figure}
+
+    % b
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(s-3)}{(s+1)^2} & L(j\omega) &= \frac{(-1) 3 K_p(^{-j\omega}/_3+1)}{(j\omega+1)^2}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &= \left|3 K_p\right| \frac{\sqrt{\omega^2/9 + 1}}{\sqrt{\omega^2 + 1} \sqrt{\omega^2 + 1}}
+        \\\\
+        \angle L(s) &= -180\degree + \arctan(\omega/3) - \arctan(\omega) - \arctan(\omega)
+        \\
+        &= -180\degree - \arctan(\omega/3) - 2 \arctan(\omega)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline 
+          $0^+$ & $|3K_p|$ & $-180\degree$
+          \\
+          $\infty^+$ & $0$ & $-270\degree$
+        \end{tabular}
+      \end{center}
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.65\textwidth}
+        \centering
+          \includegraphics[width=\textwidth]{tarea3/img/b1.eps}
+        \end{subfigure}
+      \end{figure}
+    
+    % c
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(s+4)(s+7)}{(s-3)(s-5)} 
+        \\
+        L(j\omega) &= (-1)^2\left(\frac{28}{15}K_p\right)
+          \frac
+            {(^{j\omega}/_4+1)(^{j\omega}/_7+1)}
+            {(^{-j\omega}/_3+1)(^{-j\omega}/_5+1)}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &= \left|\frac{28}{15}K_p\right| 
+          \frac
+            {\sqrt{\omega^2/16 + 1}\sqrt{\omega^2/49 + 1}}
+            {\sqrt{\omega^2/9 + 1}\sqrt{\omega^2/25 + 1}}
+      \end{align*}
+      \begin{align*}
+        \angle L(s) &= -180\degree -180\degree + \arctan(\omega/3) + \arctan(\omega/4) + \arctan(\omega/5) + \arctan(\omega/7)
+        \\
+        &= - 360\degree + \arctan(\omega /3) + \arctan(\omega /4) + \arctan(\omega /5) + \arctan(\omega /7)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline \\
+          $0^+$ & $\left|\frac{28}{15}K_p\right|$ & $-360\degree$
+          \\\\
+          $\infty^+$ & $\left|\frac{28}{15}K_p\right|$ & $0\degree$
+        \end{tabular}
+      \end{center}
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.65\textwidth}
+        \centering
+          \includegraphics[width=\textwidth]{tarea3/img/c1.eps}
+        \end{subfigure}
+      \end{figure}
+
+    % d
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(s+1)(s+1)}{(s+4)(s-1)} 
+        \\
+        L(j\omega) &= (-1)\left(\frac{K_p}{2}\right)
+          \frac
+            {(j\omega+1)(^{j\omega}/_2+1)}
+            {(^{j\omega}/_4+1)(-j\omega+1)}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &= \left|\frac{1}{2}K_p\right| 
+          \frac
+            {\sqrt{\omega^2 + 1}\sqrt{\omega^2/4 + 1}}
+            {\sqrt{\omega^2/16 + 1}\sqrt{\omega^2 + 1}}
+      \end{align*}
+      \begin{align*}
+        \angle L(s) &= -180\degree - \arctan(\omega/0) + \arctan(\omega) + \arctan(\omega) + \arctan(\omega/2) - \arctan(\omega/4)
+        \\
+        &= - 270\degree + 2 \arctan(\omega) + \arctan(\omega/2) - \arctan(\omega/4)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline \\
+          $0^+$ & $\infty$ & $-270\degree$
+          \\\\
+          $\infty^+$ & $0$ & $-90\degree$
+        \end{tabular}
+      \end{center}
+
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+          \includegraphics[width=0.8\textwidth]{tarea3/img/d1.eps}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+          \centering
+          \includegraphics[width=0.8\textwidth]{tarea3/img/d2.eps}
+        \end{subfigure}
+      \end{figure}
+
+    % e
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(T_4 s+1)}{s(T_1 s+1)(T_2 s+1)(T_3s+1)} 
+        &
+        L(j\omega) &=
+          \frac
+            {K_p(j\omega T_4+1)}
+            {j\omega(j\omega T_1+1)(j\omega T_2+1)(j\omega T_3+1)}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &=  |K_p|
+          \frac
+            {\sqrt{\omega^2 T_4^2 + 1}}
+            {\omega\sqrt{\omega^2 T_1^2 + 1}\sqrt{\omega^2 T_2^2 + 1}\sqrt{\omega^2 T_3^2 + 1}}
+      \end{align*}
+      \begin{align*}
+        \angle L(s) &= - \arctan(\omega/0) - \arctan(\omega T_1) - \arctan(\omega T_2) - \arctan(\omega T_3) + \arctan(\omega T_4)
+        \\
+        &= - 90\degree - \arctan(\omega T_1) - \arctan(\omega T_2) - \arctan(\omega T_3) + \arctan(\omega T_4)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline \\
+          $0^+$ & $\infty$ & $-90\degree$
+          \\\\
+          $\infty^+$ & $0$ & $-270\degree$
+        \end{tabular}
+      \end{center}
+
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+          \includegraphics[width=0.8\textwidth]{tarea3/img/e1.eps}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{tarea3/img/e2.eps}
+        \end{subfigure}
+      \end{figure}
+    
+    % f
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(4 s+1)(2 s +1)}{s^2(s-1)} 
+        &
+        L(j\omega) &=
+          \frac
+            {K_p(j\omega 4+1)(j\omega 2+1)}
+            {(-1)(j\omega)^2(-j\omega + 1)}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &=  |K_p|
+          \frac
+            {\sqrt{16\omega^2 + 1}\sqrt{4\omega^2 + 1}}
+            {\omega^2\sqrt{\omega^2 + 1}}
+      \end{align*}
+      \begin{align*}
+        \angle L(s) &= -180\degree - \arctan(\omega/0) - \arctan(\omega/0) + \arctan(4\omega) + \arctan(2\omega) - \arctan(-\omega)
+        \\
+        &= -360\degree + \arctan(4\omega) + \arctan(2\omega) - \arctan(-\omega)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline \\
+          $0^+$ & $\infty$ & $-360\degree$
+          \\\\
+          $\infty^+$ & $0$ & $-90\degree$
+        \end{tabular}
+      \end{center}
+            \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+          \includegraphics[width=\textwidth]{tarea3/img/f1.eps}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{tarea3/img/f2.eps}
+        \end{subfigure}
+      \end{figure}
+
+    % g
+    \item
+      \begin{align*}
+        L(s) &= \frac{K_p(T_1 s+1)(T_2 s +1)}{s^3}
+        &
+        L(j\omega) &=
+          \frac
+            {K_p(j\omega T_1+1)(j\omega T_2+1)}
+            {(j\omega)^3}
+      \end{align*}
+      \begin{align*}
+        \left|L(j\omega)\right| &=  |K_p|
+          \frac
+            {\sqrt{\omega^2 T_1^2 + 1}\sqrt{\omega^2 T_2^2 + 1}}
+            {\omega^3}
+      \end{align*}
+      \begin{align*}
+        \angle L(s) &= - \arctan(\omega/0) - \arctan(\omega/0) - \arctan(\omega/0) + \arctan(\omega t_1) + \arctan(\omega t_2)
+        \\
+        &= -270\degree + \arctan(\omega t_1) + \arctan(\omega t_2)
+      \end{align*}
+
+      \begin{center}
+        \begin{tabular}{c | c c}
+          $\omega$ & $|L(J\omega)|$ & $\angle L(j\omega)$
+          \\ \hline \\
+          $0^+$ & $\infty$ & $-270\degree$
+          \\\\
+          $\infty^+$ & $0$ & $-90\degree$
+        \end{tabular}
+      \end{center}
+
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+          \includegraphics[width=\textwidth]{tarea3/img/g1.eps}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+          \centering
+          \includegraphics[width=\textwidth]{tarea3/img/g2.eps}
+        \end{subfigure}
+      \end{figure}
+      
+  \end{enumerate}
+
+\end{ejercicio}
