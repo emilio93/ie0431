@@ -1,0 +1,327 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10723,        319]
+NotebookOptionsPosition[     10430,        306]
+NotebookOutlinePosition[     10768,        321]
+CellTagsIndexPosition[     10725,        318]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  "\"\<~/Desktop/ucr/2017-iii/431/latex/trabajo/tarea3/img\>\"", 
+  "]"}], "\[IndentingNewLine]", "A", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{"s", 
+      RowBox[{"(", 
+       RowBox[{"s", "+", "3"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"s", "+", "5"}], ")"}]}], ")"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"na1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "0.05"}], ",", "0.01"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a1.eps\>\"", ",", "na1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"na2", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "0.03"}], ",", "0.001"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "0.02"}], ",", "0.02"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<a2.eps\>\"", ",", "na2"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "B", "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{"(", 
+     RowBox[{"s", "-", "3"}], ")"}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"s", "+", "1"}], ")"}], "^", "2"}]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"nb1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "3"}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<b1.eps\>\"", ",", "nb1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "C", "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"s", "+", "4"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"s", "+", "7"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"s", "-", "3"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"s", "-", "5"}], ")"}]}]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"nc1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "2"}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<c1.eps\>\"", ",", "nc1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "D", "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"s", "+", "1"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"s", "+", "2"}], ")"}]}], 
+    RowBox[{"s", 
+     RowBox[{"(", 
+      RowBox[{"s", "+", "4"}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}]}]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"nd1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "2"}], ",", "0.1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<d1.eps\>\"", ",", "nd1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"nd2", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "0.01"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<d2.eps\>\"", ",", "nd2"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "E", "\[IndentingNewLine]", \
+
+ RowBox[{
+  RowBox[{"T4", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T1", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T2", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"T3", "=", "10"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{"10", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"T4", " ", "s"}], "+", "1"}], ")"}]}], 
+    RowBox[{"s", "*", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"T3", " ", "s"}], "+", "1"}], ")"}], "*", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"T2", " ", "s"}], "+", "1"}], ")"}], "*", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"T1", " ", "s"}], "+", "1"}], ")"}]}]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ne1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "2500"}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<e1.eps\>\"", ",", "ne1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ne2", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "100"}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<e2.eps\>\"", ",", "ne2"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "F", "\n", 
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"4", " ", "s"}], "+", "1"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", " ", "s"}], "+", "1"}], ")"}]}], 
+    RowBox[{
+     SuperscriptBox["s", "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{"s", "-", "1"}], ")"}]}]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", "10"}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], "]"}], 
+  "\n"}], "\[IndentingNewLine]", "G", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tfe", "=", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"0.1", " ", "s"}], "+", "1"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"1", " ", "s"}], "+", "1"}], ")"}]}], 
+    SuperscriptBox["s", "3"]]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"npg1", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "200"}], ",", "0.01"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "2000"}], ",", "2000"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<g1.eps\>\"", ",", "npg1"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"npg2", "=", 
+  RowBox[{"NyquistPlot", "[", 
+   RowBox[{"tfe", ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "0.2"}], ",", "0.01"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "0.1"}], ",", "0.1"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"PlotRangePadding", "\[Rule]", "Automatic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<g2.eps\>\"", ",", "npg2"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7259270216272182`*^9, 3.7259270517231073`*^9}, {
+   3.725927081836268*^9, 3.725927083579423*^9}, {3.725927114212055*^9, 
+   3.725927169811681*^9}, 3.7259332223306293`*^9, {3.725933263146769*^9, 
+   3.72593346568369*^9}, {3.7259334999278393`*^9, 3.725933571029942*^9}, {
+   3.725933686669031*^9, 3.725933782533456*^9}, {3.725933845951344*^9, 
+   3.72593394155641*^9}, {3.725934008245091*^9, 3.725934204997134*^9}, {
+   3.725934255281555*^9, 3.725934374436881*^9}, {3.725934405214099*^9, 
+   3.7259344478353777`*^9}, {3.725934488799698*^9, 3.7259345009311733`*^9}, {
+   3.725934534553817*^9, 3.725934545362349*^9}, {3.725934644620016*^9, 
+   3.725934645285725*^9}, {3.725934681829986*^9, 3.72593474760992*^9}, {
+   3.725934797036886*^9, 3.725934940339827*^9}, {3.7259349820463457`*^9, 
+   3.72593503656889*^9}, {3.725935069645187*^9, 3.72593519199288*^9}, {
+   3.725935239823927*^9, 3.7259352838281517`*^9}, {3.7259353234920883`*^9, 
+   3.7259353337815104`*^9}, {3.72593540749608*^9, 3.725935457513802*^9}, {
+   3.725935602430441*^9, 3.725935618032735*^9}, {3.725935752603553*^9, 
+   3.725935769412476*^9}, {3.725935858983939*^9, 3.725935866426045*^9}, {
+   3.725935918443288*^9, 3.725936046702238*^9}, {3.725936091455358*^9, 
+   3.725936235426512*^9}, {3.725936269288692*^9, 3.725936287932316*^9}, {
+   3.725936404015053*^9, 3.725936641164856*^9}, {3.725936676704509*^9, 
+   3.725936764985442*^9}, {3.725936908481262*^9, 3.725937112161594*^9}, {
+   3.725937162599475*^9, 
+   3.725937214512064*^9}},ExpressionUUID->"d4bcbe77-81f5-43f0-89da-\
+45c550557746"]
+},
+WindowSize->{1638, 999},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 9868, 284, 1474, "Input",ExpressionUUID->"d4bcbe77-81f5-43f0-89da-45c550557746"]
+}
+]
+*)
+
