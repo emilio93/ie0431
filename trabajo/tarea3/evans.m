@@ -2,12 +2,24 @@ s=tf('s');
 kp=1;
 
 % 1
-ps=7/((s+1)*(s+4)*(s+7));
-cs=(s^2+8*s+52)/(8*s);
+% ps=7/((s+1)*(s+4)*(s+7));
+% cs=(s^2+8*s+52)/(8*s);
 
 % 2
 % ps = 2/((s+1)*(s+2)*(s+3)*(s+4))
 % cs = kp*(s^2+s+4)/(2*s)
+
+% 3
+%ps = 10/((s+1)*(s^2+4*s+8))
+%cs=kp*(s^2+10*s+34)/(10*s)
+
+% 4
+% ps = (s^2+4*s+13)/((s+12)*(s^2+8*s+16.25))
+% cs=kp*(s+1)/s
+
+% 5
+% ps = (s^2+4*s+13)/((s+12)*(s^2+8*s+16.25))
+% cs= kp*(1.5*s^2+3*s+4)/(3*s)
 
 % 6
 % ps=(s^2+4*s+13)/((s+12)*(s^2+8*s+16.25));
@@ -24,7 +36,7 @@ csLTX=tf2latex(cs)
 lsLTX=tf2latex(ls)
 pcLTX=tf2latex(pc)
 
-kvec=0:1/100:200;
+kvec=0:1/1000:500;
 rlocusplot(ls,kvec)
 
 disp('********************************************')
@@ -67,7 +79,7 @@ disp('********************************************')
 disp('Regla 6: Intersección de asíntotas con el eje real')
 disp(' ')
 if (n-m>=2)
-    disp(strcat('Interseccion sigma_a',num2str(k)))
+    disp('Interseccion sigma_a')
     (sum(polos)-sum(ceros))/(n-m)
 else
     disp('    n-m<2 entonces regla no aplica')
@@ -187,11 +199,30 @@ l21
 l22
 
 syms x;
-format long
 sols = solve(poly2sym(l11,x)*poly2sym(l22)==poly2sym(l12)*poly2sym(l21))
 for i=sols
     sol=double(i)
 end
+
+
+disp('********************************************')
+disp('Regla 12: Calculo de la ganancia en un punto del LGR')
+disp(' ')
+s1 = input('elija s1 ej 1+1i: ');
+
+polegain=1;
+zerogain=1;
+for i = 1:numel(polos)
+    a = abs(s1-polos(i));
+    polegain = polegain * a;
+    
+end
+for i = 1:numel(ceros)    
+    a = abs(s1-ceros(i));
+    zerogain = zerogain * a;
+end
+ganancia = polegain/zerogain
+
 function txt = tf2latex(sys)
    [num,den] = tfdata(sys);
    syms s;
@@ -228,7 +259,7 @@ function [ang_p, ang_c] = regla10(polos, ceros)
 end
 
 function angulo = regla10_aux(pos, polos,ceros)
-    disp(strcat('Posicion:',num2str(pos)))
+    %disp(strcat('Posicion:',num2str(pos)))
     acumulado=0;
     for j = 1:numel(polos)
         if (pos~=polos(j))
