@@ -1,0 +1,118 @@
+\textbf{Caso 3}
+
+\textit{Se utilizan fórmulas y resultados relevantes obtenidos en el caso 1.}
+
+\begin{align*}
+  P(s) &= 
+  \frac{10}{s^3+5\,s^2+12\,s+8}
+  &
+  C(s) &= K_p
+  \frac{s^2+10\,s+34}{10\,s}
+  \\\\
+  L(s) &= K_p
+  \frac{10\,s^2+100\,s+340}{10\,s^4+50\,s^3+120\,s^2+80\,s}
+  &
+  p(s) &= 
+  10\,s^4+50\,s^3+120\,s^2+80\,s + K_p(10\,s^2+100\,s+340)
+\end{align*}
+\begin{itemize}
+  \item Regla 1: Simetría del LGR.
+  \item Regla 2: Inicio y final del LGR. Inicia en polos($\omega = 0$) y termina en ceros($\omega \rightarrow \infty$).
+  \begin{align*}
+    \text{polos:} && 0 \qquad  -2 + j2 \qquad  -2 - j2 \qquad  -1
+  \end{align*}
+  \begin{align*}
+    \text{ceros:} && -0.5 + j3 \qquad -0.5 - j3
+  \end{align*}
+
+  \item Regla 3: Número de ramas del LGR. Cantidad de polos($n$) menos cantidad de ceros($m$). $n-m = 2$.
+  \item Regla 4: LGR sobre el eje real. 
+  De acuerdo a los polos existentes, hay secciones del LGR de 0 a -1.
+  \item Regla 5: Ángulos de las asíntotas.
+  \begin{align*}
+    \alpha_0 &= \frac{2\times0 + 1}{2}  180\degree  = 90\degree
+    \\
+    \alpha_1 &= \frac{2\times1 + 1}{2}  180\degree = -90\degree
+  \end{align*}
+  \item Regla 6: Intersección de las asíntotas con el eje real.
+  \begin{align*}
+    \sigma_a &= 2.5
+  \end{align*}
+  \item Regla 7: Centroide de las raices.
+  \begin{align*}
+    \sigma_r &= -1.25
+  \end{align*}
+  \item Regla 8: Puntos de salida o entrada al eje real.
+
+  \begin{align*}
+    \frac{dp_1(\sigma)}{d\sigma} p_2(\sigma) = p_1(\sigma) \frac{dp_2(\sigma)}{d\sigma}
+    \\
+    (40s^3+150s^2)(10s^4+50s^3+120s^2+80s) = (40s^3+150s^2+240s+80)(10s^4+50s^3)
+    \\
+    2\,s^5+35\,s^4+236\,s^3+622\,s^2+816\,s+272 = 0
+  \end{align*}
+  Los resultados para $s$ son:
+  \begin{itemize}
+    \item -0.4782
+    \item -6.9282 + j3.6557
+    \item -6.9282 - j3.6557
+    \item -1.5827 + j1.4593
+    \item -1.5827 - j1.4593
+  \end{itemize}
+  De estos resultados y la regla 4, se tiene que solo el punto $s=-0.4782$ es válido.
+  \item Regla 9: Ángulos de entrada o salida al eje real.
+  \begin{align*}
+    \alpha_{c,0} = \frac{(2\times0+1)180\degree}{2} = 90\degree
+    \\
+    \alpha_{c,1} = \frac{(2\times1+1)180\degree}{2} = 270\degree = -90\degree
+  \end{align*}
+  \item Regla 10: Ángulo de partida o llegada de un polo complejo o a un cero complejo.
+
+  Ángulo de partida del polo complejo:-2+2i
+  \begin{equation*}
+  202.1663\degree
+  \end{equation*}
+  Ángulo de partida del polo complejo:-2-2i
+  \begin{equation*}
+  157.8337\degree
+  \end{equation*}
+  Ángulo de llegada del cero:-5+3i
+  \begin{equation*}
+  124.6952\degree
+  \end{equation*}
+  Ángulo de llegada del cero:-5-3i
+  \begin{equation*}
+  235.3048\degree
+  \end{equation*}
+
+  \item Regla 11: Punto de cruce del eje imaginario.
+
+  \begin{align*}
+    p_{1\text{im}}(j\omega) p_{2\text{re}}(j\omega) &=  p_{1\text{re}}(j\omega) p_{2\text{im}}(j\omega)
+  \end{align*}
+
+  Ahora se utiliza la solución encontrada para el problema que se resuelve:
+  \begin{align*}
+    p_{1\text{im}} &=100
+    \\
+    p_{1\text{re}} &=-10\omega^2+340
+    \\
+    p_{2\text{im}} &=-50\omega^2 -80
+    \\
+    p_{2\text{re}} &=10\omega^4 - 120 \omega^2
+  \end{align*}
+  \begin{align*}
+    (100)(-50\omega^2 -80) = (-10\omega^2+340)(10\omega^4 - 120 \omega^2)
+    \\
+    \omega = \pm j3.8965 \qquad, \qquad \pm 1.8929
+  \end{align*}
+  Funciona $1.89229$.
+
+  \item Regla 12: Cálculo de la ganancia en un punto LGR:
+  
+  Para $\pm1.8929$:
+    \begin{equation*}
+    |K|_{s=1.8929} = 0.99
+  \end{equation*}
+
+\end{itemize}

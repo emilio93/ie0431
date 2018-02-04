@@ -1,0 +1,197 @@
+\textbf{Caso 1}
+
+\begin{align*}
+  P(s) &= \frac{7}{s^3+12\,s^2+39\,s+28}
+  &
+  C(s) &= K_p\frac{s^2+8\,s+52}{8\,s}
+  \\\\
+  L(s) &= K_p\frac{7\,s^2+56\,s+364}{8\,s^4+96\,s^3+312\,s^2+224\,s}
+  &
+  p(s) &= 8\,s^4+96\,s^3+312\,s^2+224\,s + K_p(7\,s^2+56\,s+364)
+\end{align*}
+
+\begin{itemize}
+  \item Regla 1: Simetría del LGR.
+  \item Regla 2: Inicio y final del LGR. Inicia en polos($\omega = 0$) y termina en ceros($\omega \rightarrow \infty$).
+  \begin{align*}
+    \text{polos:} && 0 \qquad -7 \qquad -4 \qquad -1
+  \end{align*}
+  \begin{align*}
+    \text{ceros:} && -4 + j6 \qquad -4 - j6
+  \end{align*}
+  \item Regla 3: Número de ramas del LGR. Cantidad de polos($n$) menos cantidad de ceros($m$). $n-m = 2$.
+  \item Regla 4: LGR sobre el eje real. 
+  De acuerdo a los polos existentes, hay secciones del LGR de 0 a -1 y de -7 a $-\infty$.
+  \item Regla 5: Ángulos de las asíntotas.
+  \begin{align*}
+    \alpha_k &= \frac{2\times k + 1}{n-m}  180\degree
+    \\
+    \alpha_0 &= \frac{2\times0 + 1}{2}  180\degree = 90\degree
+    \\
+    \alpha_1 &= \frac{2\times1 + 1}{2}  180\degree = 270\degree =-90\degree  
+  \end{align*}
+  \item Regla 6: Intersección de las asíntotas con el eje real.
+  \begin{align*}
+    \sigma_a &= \frac{\sum_{j=1}^{n } \text{Re}(p_j) - \sum_{i=1}^{n } \text{Re}(z_i)}{n-m}
+    \\
+    \sigma_a &= \frac{0-7-4-1-(-4-4)}{2} = -2
+  \end{align*}
+  \item Regla 7: Centroide de las raices.
+  \begin{align*}
+    \sigma_r &= \frac{\sum_{j=1}^{n } \text{Re}(p_j)}{n}
+    \\
+    \sigma_r &= \frac{0-7-4-1}{2} = -3
+  \end{align*}
+  \item Regla 8: Puntos de salida o entrada al eje real.
+  \begin{align*}
+    \frac{dK(\sigma)}{d\sigma} = 0
+    \\
+    1+L(s) = p(s) = \frac{p_1(s) + K p_2(s)}{p_3(s)} = 0
+    \\
+    s=\sigma \Rightarrow K(\sigma) = -\frac{p_1(\sigma)}{p_2(\sigma)}
+    \\
+    \frac{dK(\sigma)}{d\sigma} = 
+    \frac{
+      \frac{dp_1(\sigma)}{d\sigma} p_2(\sigma) 
+      - p_1(\sigma) \frac{dp_2(\sigma)}{d\sigma}
+    }{
+      (p_2(\sigma))^2
+    } = 0
+    \\
+    \frac{dp_1(\sigma)}{d\sigma} p_2(\sigma) = p_1(\sigma) \frac{dp_2(\sigma)}{d\sigma}
+  \end{align*}  
+  Este resultado es aplicable para las ecuaciones que tengan la forma de $p(s)$ mostrada. Se puede ver que $p_1(s)$ es el denominador de $L(s)$ y $p_2(s)$ es el numerador de $L(s)$ omitiendo el término de ganancia.
+
+  \begin{align*}
+    (32\,s^3 + 288\,s^2 + 624\,s + 224)(7\,s^2+56\,s+364) = (8\,s^4+96\,s^3+312\,s^2+224\,s)(14\,s+56)
+    \\
+    16\,s^5+288\,s^4+3200\,s^3+17248\,s^2+32448\,s+11648 = 0
+    \\
+    s^5+18\,s^4+200\,s^3+1078\,s^2+2028\,s+728 = 0
+  \end{align*}
+  Los resultados para $s$ son:
+  \begin{itemize}
+    \item -5.81
+    \item -2.7218
+    \item -0.4639
+    \item -4.5021 + j8.8859
+    \item -4.5021 - j8.8859
+  \end{itemize}
+  De estos resultados y la regla 4, se tiene que solo el punto $s=-2.7218$ es válido.
+  \item Regla 9: Ángulos de entrada o salida al eje real.
+  \begin{align*}
+    \alpha_{c,k} = \frac{(2k+1)180\degree}{p}
+    \\
+    \alpha_{c,1} = \frac{(2\times0+1)180\degree}{2} = 90\degree
+    \\
+    \alpha_{c,1} = \frac{(2\times1+1)180\degree}{2} = 270\degree = -90\degree    
+  \end{align*}
+  \item Regla 10: Ángulo de partida o llegada de un polo complejo o a un cero complejo.
+  \begin{align*}
+    \angle (s+p_x) &= \left(\sum_{i=1}^m \angle(s+z_i) - \sum_{j=1,j\neq i}^n \angle(s+p_j)\right)-180\degree
+    \\
+    \angle (s+z_x) &= 180\degree - \left(\sum_{i=1}^m \angle(s+z_i) - \sum_{j=1,j\neq i}^n \angle(s+p_j)\right)
+  \end{align*}
+  Ángulo de llegada al cero en $-4+j6$:
+  \begin{equation*}
+    180\degree - ( -90\degree - [-90\degree-\arctan(3/6) - 90\degree - \arctan(6/3) - arctan(6/4)] ) = -56.3099\degree
+  \end{equation*}
+
+  Ángulo de llegada al cero en -4-j6 se obtiene por simetría de acuerdo a la regla 1.
+  \begin{equation*}
+    56.3099\degree
+  \end{equation*}
+  \item Regla 11: Punto de cruce del eje imaginario.
+
+  Se despeja $K_p$ en términos de $s$ a partir del polinomio característico. Si se llama $p_1(s)$ al denominador de $L(s)$, y $p_2(s)$ al numerador sin contar la ganancia, se puede obtener de la siguiente manera.
+  \begin{align*}
+    L(s) &= K_p\frac{p_2(s)}{p_1(s)}
+    \\
+    1+L(s) = 0 &= p_1(s) + K_p p_2(s)
+    \\
+    K_p(s) &= -\frac{p_1(s)}{p_2(s)}
+  \end{align*}
+  Si sucede que tanto $p_1(s)$ como $p_2(s)$ son polinomiales con coeficientes $a_k$ y $b_k$ respectivamente, se pueden separar las potencias pares e impares para facilitar el manejo de las partes real e imaginaria a la hora de pasar la función al plano complejo con el fin de encontrar los cortes con el eje imaginario.
+  \begin{align*}
+    K_p(s) = \frac{(...+a_4s^4+a_2s^2+a_0) + s(...+a_3s^2+a_1)}{(...+b_4s^4+b_2s^2+b_0) + s(...+b_3s^2+b_1)}
+    \\
+    K_p(j\omega) = \frac
+    {(...+a_4\omega^4-a_2\omega^2+a_0) + (j\omega)(...-a_3\omega^2+a_1)}
+    {(...+b_4\omega^4-b_2\omega^2+b_0) + (j\omega)(...-b_3\omega^2+b_1)}
+  \end{align*}
+  Ahora se agrupan estas funciones, se encuentra la parte real e imaginaria utilizando el conjugado del denominador.
+  \begin{align*}
+    K_p(j\omega) = \frac
+    {p_{1\text{re}}(j\omega) + (j\omega)p_{1\text{im}}(j\omega)}
+    {p_{2\text{re}}(j\omega) + (j\omega)p_{2\text{im}}(j\omega)}
+    \\\\
+    K_p(j\omega) = \frac
+    {p_{1\text{re}}(j\omega) + (j\omega)p_{1\text{im}}(j\omega)}
+    {p_{2\text{re}}(j\omega) + (j\omega)p_{2\text{im}}(j\omega)}
+    \times \frac
+    {p_{2\text{re}}(j\omega) - (j\omega)p_{2\text{im}}(j\omega)}
+    {p_{2\text{re}}(j\omega) - (j\omega)p_{2\text{im}}(j\omega)}
+    \\\\
+    K_p(j\omega) = \frac
+    {p_{1\text{re}}(j\omega) p_{2\text{re}}(j\omega) + p_{1\text{im}}(j\omega) p_{2\text{im}}(j\omega)  + (j\omega)\left[p_{1\text{im}}(j\omega) p_{2\text{re}}(j\omega) -  p_{1\text{re}}(j\omega) p_{2\text{im}}(j\omega)\right]}
+    {(p_{2\text{re}}(j\omega))^2 + (p_{2\text{im}}(j\omega))^2}
+  \end{align*}
+  Ahora se tiene un sistema de ecuaciones.
+  \begin{align*}
+    K_p(j\omega) &= \frac
+    {p_{1\text{re}}(j\omega) p_{2\text{re}}(j\omega) + p_{1\text{im}}(j\omega) p_{2\text{im}}(j\omega)}
+    {(p_{2\text{re}}(j\omega))^2 + (p_{2\text{im}}(j\omega))^2}
+    \\
+    \\
+    0\text{j} &= \frac
+    {(j\omega)\left[p_{1\text{im}}(j\omega) p_{2\text{re}}(j\omega) -  p_{1\text{re}}(j\omega) p_{2\text{im}}(j\omega)\right]}
+    {(p_{2\text{re}}(j\omega))^2 + (p_{2\text{im}}(j\omega))^2}
+  \end{align*}
+  
+  De la segunda se obtiene el valor o los valores para $\omega$ cuando la parte imaginaria es cero. Se puede obtener la ganancia sustituyendo el valor de $\omega$ obtenido en la ecuación para $K_p$ o utilizar la regla 12.
+  \begin{align*}
+    0 &= p_{1\text{im}}(j\omega) p_{2\text{re}}(j\omega) -  p_{1\text{re}}(j\omega) p_{2\text{im}}(j\omega)
+    \\
+    p_{1\text{im}}(j\omega) p_{2\text{re}}(j\omega) &=  p_{1\text{re}}(j\omega) p_{2\text{im}}(j\omega)
+  \end{align*}
+
+  Ahora se utiliza la solución encontrada para el problema que se resuelve:
+  \begin{align*}
+    p_{1\text{im}} &=-96\omega^2+224
+    \\
+    p_{1\text{re}} &=8\omega^4-312\omega^2
+    \\
+    p_{2\text{im}} &=56
+    \\
+    p_{2\text{re}} &=-7\omega^2+364
+  \end{align*}
+  \begin{align*}
+    (56)(8\omega^4-312\omega^2) = (-96\omega^2+224)(-7\omega^2+364)
+    \\
+    448\omega^4 - 17472\omega^2 = 672\omega^4 -36512\omega^2 + 81536
+    \\
+    224\omega^4 - 19040\omega^2 + 81536 = 0
+    \\
+    \omega = \pm\sqrt{\frac{85\pm3\sqrt{641}}{2}} 
+    \\
+    = \pm2.1267 \qquad, \qquad \pm 8.9709
+  \end{align*}
+
+  \item Regla 12: Cálculo de la ganancia en un punto LGR:
+  \begin{equation*}
+    |K|_{s=s_1} = \frac{\prod_{j=1}^n|s_1+p_j|}{\prod_{i=1}^m|s_1+z_i|}
+  \end{equation*}
+
+  Se utiliza la ecuación en los valores encontrados con la regla 11:
+  
+  Para $\pm2.1267$:
+    \begin{equation*}
+    |K|_{s=2.1267} = 3.76
+  \end{equation*}
+    Para $\pm8.9709$:
+    \begin{equation*}
+    |K|_{s=8.9709} = 134
+  \end{equation*}
+
+
+\end{itemize}
