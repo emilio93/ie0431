@@ -8,6 +8,7 @@ carne = [5 6 8 0];
 % Pasos iniciales
 %
 c=carne;
+% Obtener valores de q p m n
 [p q m n]=checkCarne(carne);
 disp(strcat('p:',num2str(p)))
 disp(strcat('q:',num2str(q)))
@@ -16,6 +17,8 @@ disp(strcat('n:',num2str(n)))
 
 s=tf('s');
 
+% asignar funciones de transferencia 
+% del proceso y del controlador
 ps=(m/4)/((p*s+1)*(q*s+1)*(m*s+1)*(n*s+1))
 
 kp=1;
@@ -25,8 +28,10 @@ disp(strcat('ti:',num2str(ti)))
 disp(strcat('td:',num2str(td)))
 cs=kp*(1+1/(ti*s))*(1+td*s)
 
+% Obtener FTLA
 ls=minreal(ps*cs)
 
+% Obtener LGR para comprobar Kpu
 disp('Generando LGR...')
 kvec=0:1/200:10;
 figure
@@ -36,15 +41,17 @@ figure
 disp('********************************************')
 disp('Regla 11: Cruce con el eje imaginario')
 disp(' ')
+
+% Los cortes del LGR con el eje imaginario
+% tienen el valor de Kpu
 raices=regla11(ls)
 
 disp('********************************************')
 disp('Regla 12: Cálculo de la ganancia en un punto del LGR')
 disp(' ')
 
-%s1 = input('elija s1 ej 1+1i: ');
-%s1
 disp('K para cortes con eje imaginario')
+% Se calculan los valores de K no repetidos para Kpu
 [z,ganancia]=zero(ls);
 for i=1:1:numel(raices)
   if imag(raices(i)) ~= 0; continue; end
@@ -57,12 +64,16 @@ end
 %
 % Parte a
 %
-
+  disp('********************************************')
+  disp('PARTE A')
+  disp(' ')
+  % minima y máxima variación
   kpmin=0.34*kpu;
   kpmax=0.78*kpu;
   lsmax=kpmax*ps*cs;
   lsmin=kpmin*ps*cs;
 
+  % Se grafican las ftla
   figure
   bodeplot(lsmax)
   saveas(gcf,'bodeplot1max.eps','epsc');
@@ -81,7 +92,10 @@ end
 %
 % Parte b
 %
-
+  disp('********************************************')
+  disp('PARTE B')
+  disp(' ')
+  % se utiliza margin para obtener los margenes de ganancia y fase
   [margen_de_ganancia,margen_de_fase,frecuencia_de_mg,frecuencia_de_mf] = margin(ls);
 
   margen_de_ganancia_db=20*log(margen_de_ganancia)
@@ -90,7 +104,11 @@ end
 %
 % Parte c
 %
-
+  disp('********************************************')
+  disp('PARTE C')
+  disp(' ')
+  % se utiliza la función fc_graf_polar 
+  % para obtener gráfica polar
   hold off
   figure
   fc_graf_polar_L(lsmin)
@@ -110,64 +128,83 @@ end
 %
 % Parte d
 %
+  disp('********************************************')
+  disp('PARTE D')
+  disp(' ')
+  % Se obtienen los valores máximo y mínimos de ms
+  sensibilidad_max=1/(1+lsmax);
+  [mag_sensibilidad_max,fase_sensibilidad_max,wout]=bode(sensibilidad_max);
+  ms_max=max(mag_sensibilidad_max)
 
-sensibilidad_max=1/(1+lsmax);
-[mag_sensibilidad_max,fase_sensibilidad_max,wout]=bode(sensibilidad_max);
-Ms_max=max(mag_sensibilidad_max)
-
-sensibilidad_min=1/(1+lsmin);
-[mag_sensibilidad_min,fase_sensibilidad_min,wout]=bode(sensibilidad_min);
-Ms_min=max(mag_sensibilidad_min)
+  sensibilidad_min=1/(1+lsmin);
+  [mag_sensibilidad_min,fase_sensibilidad_min,wout]=bode(sensibilidad_min);
+  ms_min=max(mag_sensibilidad_min)
 
 %
 % Parte e
 %
+  disp('********************************************')
+  disp('PARTE E')
+  disp(' ')
 
-kp_max=maxima_sensibilidad(ls,2, ps,ti,td,p,q,m,n)
-cs=kp_max*(1+1/(ti*s))*(1+td*s);
-ls_opt_max=minreal(ps*cs)
-hold off
-figure
-fc_graf_polar_L(ls_opt_max)
-saveas(gcf,'parte_e_ls_opt_max.eps','epsc');
+  % Se aproximan los valores de kp para los
+  % valores de ms deseados.
+  % La aproximación realizada tiene un error 
+  % menor a epsilon
 
-kp_min=maxima_sensibilidad(ls,1.4, ps,ti,td,p,q,m,n)
-cs=kp_min*(1+1/(ti*s))*(1+td*s)
-ls_opt_min=minreal(ps*cs)
-hold off
-figure
-fc_graf_polar_L(ls_opt_min)
-saveas(gcf,'parte_e_ls_opt_min.eps','epsc');
+  epsilon=1e-15;
+  kp_max=maxima_sensibilidad(ls,2, ps,ti,td,p,q,m,n, epsilon)
+  cs=kp_max*(1+1/(ti*s))*(1+td*s);
+  ls_opt_max=minreal(ps*cs)
+  hold off
+  figure
+  fc_graf_polar_L(ls_opt_max)
+  saveas(gcf,'parte_e_ls_opt_max.eps','epsc');
+
+  kp_min=maxima_sensibilidad(ls,1.4, ps,ti,td,p,q,m,n, epsilon)
+  cs=kp_min*(1+1/(ti*s))*(1+td*s)
+  ls_opt_min=minreal(ps*cs)
+  hold off
+  figure
+  fc_graf_polar_L(ls_opt_min)
+  saveas(gcf,'parte_e_ls_opt_min.eps','epsc');
 
 %
 % Parte f
 %
 
-% serie                                   estandar
-% k'p (1 + 1/(t'i s)) (1 + t'd s)       = kp(1 + 1/(Ti s) + Td s)
-% k'p (1 + t'd/t'i + 1/(t'i s) + t'd s) = kp(1 + 1/(Ti s) + Td s)
-% k'p*(1 + t'd/t'i) (1 + 1/(t'i (1 + t'd/t'i) s) + t'd/(1 + t'd/t'i) s) = kp(1 + 1/(Ti s) + Td s)
-% 
-% kp=k'p*(1 + t'd/t'i)
-% ti=t'i (1 + t'd/t'i)
-% td=t'd/(1 + t'd/t'i)
-%
-%
+  disp('********************************************')
+  disp('PARTE F')
+  disp(' ')
 
-ti_estandard=ti * (1 + td/ti)
-td_estandard=td/(1 + td/ti)
+  %
+  % Se obtienen los parámetros estandar kp, Ti, Td
+  % serie                                   estandar
+  % k'p (1 + 1/(t'i s)) (1 + t'd s)       = kp(1 + 1/(Ti s) + Td s)
+  % k'p (1 + t'd/t'i + 1/(t'i s) + t'd s) = kp(1 + 1/(Ti s) + Td s)
+  % k'p*(1 + t'd/t'i) (1 + 1/(t'i (1 + t'd/t'i) s) + t'd/(1 + t'd/t'i) s) = kp(1 + 1/(Ti s) + Td s)
+  % 
+  % kp=k'p*(1 + t'd/t'i)
+  % ti=t'i (1 + t'd/t'i)
+  % td=t'd/(1 + t'd/t'i)
+  %
+  % Se obtienen los anillos de fragilidad
+  %
 
-kp_estandard=kp_max*(1 + td/ti)
-hold off
-figure
-fc_fragility_rings(kp_estandard,(ti*(1+td/ti)),td/(1+td/ti),ps)
-saveas(gcf,'parte_f_max.eps','epsc');
+  ti_estandard=ti * (1 + td/ti)
+  td_estandard=td / (1 + td/ti)
 
-kp_estandard=kp_min*(1 + td/ti)
-hold off
-figure
-fc_fragility_rings(kp_estandard,ti_estandard,td_estandard,ps)
-saveas(gcf,'parte_f_min.eps','epsc');
+  kp_estandard=kp_max*(1 + td/ti)
+  hold off
+  figure
+  fc_fragility_rings(kp_estandard,(ti*(1+td/ti)),td/(1+td/ti),ps)
+  saveas(gcf,'parte_f_max.eps','epsc');
+
+  kp_estandard=kp_min*(1 + td/ti)
+  hold off
+  figure
+  fc_fragility_rings(kp_estandard,ti_estandard,td_estandard,ps)
+  saveas(gcf,'parte_f_min.eps','epsc');
 
 
 % ***********************************************
@@ -176,20 +213,17 @@ saveas(gcf,'parte_f_min.eps','epsc');
 %
 % ***********************************************
 
-function ms = maxima_sensibilidad(ls,val, ps,ti,td,p,q,m,n)
-  epsilon=0.00000000001;
+% Obtiene el valor de Kp para alcanzar un cierto valor de ms(val) deseado
+function ms = maxima_sensibilidad(ls,val, ps,ti,td,p,q,m,n, epsilon)
   err=epsilon+1;
   s=tf('s');
   kp=1;
-  direccion=1;
   paso=5;
   cnt=0;
-  [z,ganancia]=zero(ls)
+  % mejorar la aproximacion hasta cumplir la aproximación deseada
   while abs(err)>epsilon
-
-    dir_ant=direccion;
-    if(err>0); kp=kp-paso; direccion=0;
-    else; kp=kp+paso; direccion=1;
+    if(err>0); kp=kp-paso;
+    else; kp=kp+paso;
     end
     paso=paso/2;
     cnt=cnt+1;
@@ -200,13 +234,16 @@ function ms = maxima_sensibilidad(ls,val, ps,ti,td,p,q,m,n)
     [mag_sensibilidad,fase_sensibilidad,wout]=bode(sensibilidad);
     ms=max(mag_sensibilidad);
     err=ms-val;
-    
-
   end
+  format long
   ms
+  format short
   ms=kp;
 end
 
+% Obtiene los valores adecuados
+% a partir de los ultimos 4 
+% dígitos del carne
 function [p q m n] = checkCarne(carne)
   newCarne=zeros(1,numel(carne));
   count=1;
@@ -225,6 +262,8 @@ function [p q m n] = checkCarne(carne)
   n=newCarne(4);
 end
 
+% aplica regla 11 y obtiene los cruces 
+% del LGR con el eje imaginario
 function sol = regla11(ls)
 
   [num_ls,den_ls]=tfdata(tf(ls));
@@ -271,6 +310,8 @@ function sol = regla11(ls)
   for i=sols; sol=double(i); end
 end
 
+% Aplica regla 12 del LGR y obtiene la ganancia en
+% el punto s1
 function k = regla12(ls, s1)
   polegain=1;
   zerogain=1;
