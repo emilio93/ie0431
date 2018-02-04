@@ -10,8 +10,8 @@ kp=1;
 % cs = kp*(s^2+s+4)/(2*s)
 
 % 3
-%ps = 10/((s+1)*(s^2+4*s+8))
-%cs=kp*(s^2+10*s+34)/(10*s)
+% ps = 10/((s+1)*(s^2+4*s+8))
+% cs=kp*(s^2+10*s+34)/(10*s)
 
 % 4
 % ps = (s^2+4*s+13)/((s+12)*(s^2+8*s+16.25))
@@ -22,17 +22,18 @@ kp=1;
 % cs= kp*(1.5*s^2+3*s+4)/(3*s)
 
 % 6
-% ps=(s^2+4*s+13)/((s+12)*(s^2+8*s+16.25));
-% cs=kp*(1.5*s^2+3*s+4)/(3*s);
+% ps=2*kp*(0.2*s+1)*(s+1)*(2*s+1)/(s^4);
+% cs=1*s^0;
 
 % L(s)
-ls=ps*cs
+% ls=ps*cs
+ls= (s^2+s+1.25)/(s^2*(s+1)^2)
 
 % Polinomio Característico
 pc=1+ls
 
-psLTX=tf2latex(ps)
-csLTX=tf2latex(cs)
+% psLTX=tf2latex(ps)
+% csLTX=tf2latex(cs)
 lsLTX=tf2latex(ls)
 pcLTX=tf2latex(pc)
 
@@ -209,16 +210,16 @@ disp('********************************************')
 disp('Regla 12: Calculo de la ganancia en un punto del LGR')
 disp(' ')
 s1 = input('elija s1 ej 1+1i: ');
+s1
 
 polegain=1;
 zerogain=1;
-for i = 1:numel(polos)
-    a = abs(s1-polos(i));
+for i = 1:1:numel(polos)
+    a = abs(s1+polos(i));
     polegain = polegain * a;
-    
 end
-for i = 1:numel(ceros)    
-    a = abs(s1-ceros(i));
+for i = 1:1:numel(ceros)
+    a = abs(s1+ceros(i));
     zerogain = zerogain * a;
 end
 ganancia = polegain/zerogain
