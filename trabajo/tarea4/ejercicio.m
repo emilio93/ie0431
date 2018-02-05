@@ -75,18 +75,15 @@ end
 
   % Se grafican las ftla
   figure
-  bodeplot(lsmax)
-  saveas(gcf,'bodeplot1max.eps','epsc');
+  subplot(2,1,1); bodeplot(lsmax,{10e-3,1});
+  subplot(2,1,2); bodeplot(lsmin,{10e-3,1});
+  saveas(gcf,'partea.eps','epsc');
 
-  figure
-  bodeplot(lsmin)
-  saveas(gcf,'bodeplot1min.eps','epsc');
-
-  figure
+  figure  
   bodeplot(lsmax)
   hold on
   bodeplot(lsmin)
-  saveas(gcf,'bodeplot1mix.eps','epsc');
+  saveas(gcf,'partea_lsmix.eps','epsc');
   hold off
 
 %
@@ -100,7 +97,8 @@ end
 
   margen_de_ganancia_db=20*log(margen_de_ganancia)
   margen_de_fase_grados=rad2deg(margen_de_fase)
-
+  frecuencia_de_mg
+  frecuencia_de_mf
 %
 % Parte c
 %
@@ -111,13 +109,12 @@ end
   % para obtener gráfica polar
   hold off
   figure
+  subplot(1,2,1)
   fc_graf_polar_L(lsmin)
-  saveas(gcf,'partec_lsmin.eps','epsc');
 
-  hold off
-  figure
+  subplot(1,2,2)
   fc_graf_polar_L(lsmax)
-  saveas(gcf,'partec_lsmax.eps','epsc');
+  saveas(gcf,'partec.eps','epsc');
 
   hold off
   figure
