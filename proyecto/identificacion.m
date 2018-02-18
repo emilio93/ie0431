@@ -17,69 +17,84 @@ s=tf('s');
 
 % Se inicia un vector de tiempo
 t_inicial=0; % segundos
-t_final=2000; % segundos
+t_final=9; % segundos
 t_pasos=1000; % cantidad de elementos
-t=t_inicial:1/t_pasos:t_final; % vector de tiempo
+t=t_inicial:(t_final-t_inicial)/t_pasos:t_final; % vector de tiempo
 
 % El proceso real para el nivel de una columna de destilación calefactada
 ps=-2*(-0.25*s+1)/(s*(0.5*s+1))
 
 % Se simula el proceso ante una entrada escalón
-r_escalon=1+0*t;
-figure('rend','painters','pos',[5 5 400 400])
+h=1;
+r_escalon=h+0*t;
+
 salida=lsim(ps,r_escalon,t);
-plot(t,r_escalon,'k--', t,salida,'k')
-title('Respuesta al Escalón Unitario');
+% salida=awgn(salida, 1, -20); % se agrega ruido
+
+asint=transpose(-2*t+1.5);
+errorasint=salida-asint;
+errormin=min(abs(errorasint))
+figure('rend','painters','pos',[5 5 400 400])
+title('Identificación del Modelo')
+hold on
 ylabel('Nivel [m]');
 xlabel('Tiempo [s]');
-xlim([0 t_final]);
-legend('r(t)','y(t)','Location','northeast','Orientation','vertical');
-saveas(gcf,'img/proceso_real_escalon.eps','epsc');
+xlim([0 3]);
+ylim([-3 0.5])
+plot(t,salida)
+plot(t,asint)
+plot(t,0*t)
+plot(0.75+0*t,-t)
 
-% figure('rend','painters','pos',[5 5 400 400])
+%
+% Modelo 1
+% Integrante de 2do orden mas tiempo mierto
+%
+km1=-2;
+lm1=0.295099001;
+tm1=exp(1)*(-.3347)/-2;
+modelo1 = km1*exp(-lm1*s)/(s*(tm1*s+1))
+modsim=lsim(modelo1,r_escalon,t);
+
+figure('rend','painters','pos',[5 5 400 400])
+title('Respuesta al Escalón Unitario')
 hold on
+ylabel('Nivel [m]');
+xlabel('Tiempo [s]');
+xlim([0 3]);
+% ylim();
 
-opt = balredOptions('Offset',.1,'StateElimMethod','Truncate');
-% Compute second-order approximation
-rsys = -2.15*exp(-0.05*s)/(s*(s+1.1))
-modsim=lsim(rsys,r_escalon,t);
-plot(t,modsim);
+plot(t,r_escalon,'k--')
 
+plot(t,salida,'Color', [.5 .5 .5])
+plot(t,modsim,'k-.')
+% plot(t,r_escalon-transpose(salida)) % error
 
-
-% h=1;
-% [rele,t]=gensig('square',2,10-0.5,0.001);
-% rele=-h+2*h*rele(t>0.5);
-% t=t(t<t(end)-0.5);
-% releaux=t>0.499;
-% rele=h+rele-releaux;
-% 
-% figure('rend','painters','pos',[5 5 400 400])
-% salida=lsim(ps,rele,t);
-% 
-% a=(max(salida)-min(salida))/2
-% plot(t,rele,'k--', t,salida,'k');
-% % xlim([0 4])
-% ylabel('Nivel [m]')
-% xlabel('Tiempo [s]')
-% 
-% 
-% figure('rend','painters','pos',[5 5 400 400])
-% plot(t,rele,'k--', t,salida,'k')
-% xlim([1980 2000])
-% ylabel('Nivel [m]')
-% xlabel('Tiempo [s]')
-% 
-% 
-% control=1+10*exp(-t)+10*exp(-2*t)-10*exp(0.0001*t);
-% salida=lsim(ps,control,t);
-% figure('rend','painters','pos',[5 5 400 400])
-% plot(t,control,'k--', t,salida,'k');
-% xlim([0 20])
-% ylabel('Nivel [m]')
-% xlabel('Tiempo [s]')
+legend('r(t)','p_r(s)','modelo 1','Location','northeast','Orientation','vertical');
+% saveas(gcf,'img/proceso_real_escalon.eps','epsc');
 
 
+figure('rend','painters','pos',[5 5 400 400])
+title('Error en los modelos con respecto al tiempo')
+hold on
+ylabel('Error de nivel [m]');
+xlabel('Tiempo [s]');
+xlim([0 t_final]);
+% ylim();
+errormodelo=salida-modsim;
+errorfinal=errormodelo(end)
+plot(t,errormodelo,'k')
+plot(t,0*t,'k:')
+legend('modelo 1','Location','northeast','Orientation','vertical');
+% saveas(gcf,'img/error_modelo_escalon.eps','epsc');
 
 
 % Prueba de lazo cerrado
+
+% Controlador Proporcional
+kp=1;
+cps=kp;
+
+
+%function [error, control, manipulada, ]
+
