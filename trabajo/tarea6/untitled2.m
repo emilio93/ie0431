@@ -62,15 +62,19 @@ crs=[kp(1)*(beta(1)*ti(1)*s+1)/(ti(1)*s)
 % Salida del controlador u
 %
 
-ud = [-cs(1)*ps/(1+cs(1)*ps)
-      -cs(2)*ps/(1+cs(2)*ps)
-      -cs(3)*ps/(1+cs(3)*ps)];
+ud = [-cys(1)*ps/(1+cys(1)*ps)
+      -cys(2)*ps/(1+cys(2)*ps)
+      -cys(3)*ps/(1+cys(3)*ps)];
+  
+ur = [crs(1)/(1+cys(1)*ps)
+      crs(2)/(1+cys(2)*ps)
+      crs(3)/(1+cys(3)*ps)];
 
 %%%%%%%%%%
 % Entradas
 %
     kr=1; % valor inicial de la referencia
-    kd=0; % valor inicial de la perturbacion
+    kd=0.01; % valor inicial de la perturbacion
 
     pr=.15; % porcentaje de cambio en r
     pd=.10; % porcentaje de cambio en d
@@ -96,8 +100,8 @@ ud = [-cs(1)*ps/(1+cs(1)*ps)
     y=lsim(myr,r,t);
     y=y+lsim(myd,d,t);
     
-    uds=lsim(ud, r, t);
-
+    uds=lsim(ur, r, t);
+    uds=uds+lsim(ud, d, t);
 %%%%%%%%%%
 % Imagenes
 %
@@ -108,6 +112,7 @@ ud = [-cs(1)*ps/(1+cs(1)*ps)
     plot(t,y)
     plot(t,r,'k-.')
     plot(t,d,'k--')
+    xlim([0 650])
     legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
     
     % Respuesta obtenida
@@ -117,6 +122,7 @@ ud = [-cs(1)*ps/(1+cs(1)*ps)
     plot(t,x)
     plot(t,r,'k-.')
     plot(t,d,'k--')
+    xlim([0 650])
     legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
     
     % Salida del controlador
@@ -124,6 +130,7 @@ ud = [-cs(1)*ps/(1+cs(1)*ps)
     title('Salida del controlador ')
     hold on
     plot(t,uds)
-    plot(t,r,'k-.')
-    plot(t,d,'k--')
-    legend('15%','30%','60%', 'referencia', 'disturbios')
+    plot(t,r/10,'k-.')
+    plot(t,d/10,'k--')
+    xlim([0 850])
+    legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southwest')
