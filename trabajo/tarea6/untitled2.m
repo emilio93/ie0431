@@ -106,7 +106,7 @@ ur = [crs(1)/(1+cys(1)*ps)
 % Imagenes
 %
     % Respuesta deseada
-    figure('rend','painters','pos',[5 5 400 400])
+    figure('rend','painters','pos',[5 5 600 400])
     title('Respuesta deseada ante cambios en referencia y perturbaciones')
     hold on
     plot(t,y)
@@ -114,9 +114,10 @@ ur = [crs(1)/(1+cys(1)*ps)
     plot(t,d,'k--')
     xlim([0 650])
     legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
+    saveas(gcf, '1-yst.eps','epsc')
     
     % Respuesta obtenida
-    figure('rend','painters','pos',[5 5 400 400])
+    figure('rend','painters','pos',[5 5 600 400])
     title('Respuesta ante cambios en referencia y perturbaciones')
     hold on
     plot(t,x)
@@ -124,13 +125,15 @@ ur = [crs(1)/(1+cys(1)*ps)
     plot(t,d,'k--')
     xlim([0 650])
     legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
+    saveas(gcf, '1-ys.eps','epsc')
     
     % Salida del controlador
-    figure('rend','painters','pos',[5 5 400 400])
+    figure('rend','painters','pos',[5 5 600 400])
     title('Salida del controlador ')
     hold on
     plot(t,uds)
     plot(t,r/10,'k-.')
     plot(t,d/10,'k--')
-    xlim([0 850])
+    xlim([0 650])
     legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southwest')
+    saveas(gcf, '1-us.eps','epsc')
