@@ -2,49 +2,128 @@ clear
 clc
 
 s=tf('s');
+t=0:1/10:2500;
 
 k=2.5;
 l=3.5;
 
-t=0:1/10:3000;
+tc=[l*(1-0.15)
+    l*(1-0.30)
+    l*(1-0.60)];
 
-tc=l*(1-0.15);
+kp=[(2*tc(1)+l)/(k*(tc(1)+l)^2)
+    (2*tc(2)+l)/(k*(tc(2)+l)^2)
+    (2*tc(3)+l)/(k*(tc(3)+l)^2)];
 
-kp=(2*tc+l)/(k*(tc+l)^2);
-ti=(tc^2)/(1/(kp*k)-l);
-beta=tc/(2*tc+l);
+ti=[(tc(1)^2) / (1/(kp(1)*k)-l)
+    (tc(2)^2) / (1/(kp(2)*k)-l)
+    (tc(3)^2) / (1/(kp(3)*k)-l)];
+
+beta=[tc(1) / (2*tc(1)+l)
+      tc(2) / (2*tc(2)+l)
+      tc(3) / (2*tc(3)+l)];
 
 ps=k*exp(-l*s)/s;
-cys=kp*(ti*s+1)/(ti*s);
-crs=kp*(beta*ti*s+1)/(ti*s);
 
+cys=[kp*(ti(1)*s+1) / (ti(1)*s)
+     kp*(ti(2)*s+1) / (ti(2)*s)
+     kp*(ti(3)*s+1) / (ti(3)*s)];
+
+crs=[kp(1)*(beta(1)*ti(1)*s+1)/(ti(1)*s)
+     kp(2)*(beta(2)*ti(2)*s+1)/(ti(2)*s)
+     kp(3)*(beta(3)*ti(3)*s+1)/(ti(3)*s)];
+
+ cs=[crs(1)-cys(1)
+     crs(2)-cys(2)
+     crs(3)-cys(3)];
+ 
+%
+% FT de salida respecto a disturbios esperada
+%
+    kyd=[ti(1)/kp(1)
+         ti(2)/kp(2)
+         ti(3)/kp(3)];
+
+    mydt=[kyd(1) * s * exp(-l*s) / (tc(1) * s + 1)^2
+          kyd(2) * s * exp(-l*s) / (tc(2) * s + 1)^2
+          kyd(3) * s * exp(-l*s) / (tc(3) * s + 1)^2];
 
 %
+% FT con controlador implementado
+%
+    myd = [ps / (1+ps*cys(1))
+           ps / (1+ps*cys(2))
+           ps / (1+ps*cys(3))];
+
+    myr = [(ps*crs(1)) / (1+ps*cys(1))
+           (ps*crs(2)) / (1+ps*cys(2))
+           (ps*crs(3)) / (1+ps*cys(3))];
+%
+% Salida del controlador u
+%
+
+ud = [-cs(1)*ps/(1+cs(1)*ps)
+      -cs(2)*ps/(1+cs(2)*ps)
+      -cs(3)*ps/(1+cs(3)*ps)];
+
+%%%%%%%%%%
 % Entradas
 %
-kr=1;
-kd=0.01;
+    kr=1; % valor inicial de la referencia
+    kd=0; % valor inicial de la perturbacion
 
-t1=20;
-t2=300;
-t3=600;
+    pr=.15; % porcentaje de cambio en r
+    pd=.10; % porcentaje de cambio en d
 
-% Referencia
-r=kr*heaviside(t-t1)-kr*heaviside(t-t2)+1.15*kr*heaviside(t-t2);
-% Disturbios
-d=kd*heaviside(t-t1)-kd*heaviside(t-t3)+1.1*kd*heaviside(t-t3);
+    t1=20;  % inicio de r
+    t2=300; % inicio de d
+    t3=600; % cambio en r
+    t4=1000; % cambio en d
 
+    % Referencia
+    r=kr*heaviside(t-t1) - kr*heaviside(t-t3) + (1+pr)*kr*heaviside(t-t3);
+    % Disturbios
+    d=kd*heaviside(t-t2) - kd*heaviside(t-t4) + (1+pd)*kd*heaviside(t-t4);
 
-myd=ps/(1+ps*cys);
-myr=ps*crs/(1+ps*cys);
+%%%%%%%%%%%%%%
+% Simulaciones
+%
+    % target
+    x=lsim(myr,r,t);
+    x=x+lsim(mydt,d,t);
 
-y=lsim(myr,r,t);
-y=y+lsim(myd,d,t);
+    % diseño
+    y=lsim(myr,r,t);
+    y=y+lsim(myd,d,t);
+    
+    uds=lsim(ud, r, t);
 
-figure('rend','painters','pos',[5 5 400 400])
-title('Identificación del Modelo')
-hold on
-plot(t,r,'k--')
-plot(t,d,'k-.')
-plot(t,y,'k')
-
+%%%%%%%%%%
+% Imagenes
+%
+    % Respuesta deseada
+    figure('rend','painters','pos',[5 5 400 400])
+    title('Respuesta deseada ante cambios en referencia y perturbaciones')
+    hold on
+    plot(t,y)
+    plot(t,r,'k-.')
+    plot(t,d,'k--')
+    legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
+    
+    % Respuesta obtenida
+    figure('rend','painters','pos',[5 5 400 400])
+    title('Respuesta ante cambios en referencia y perturbaciones')
+    hold on
+    plot(t,x)
+    plot(t,r,'k-.')
+    plot(t,d,'k--')
+    legend('15%','30%','60%', 'referencia', 'disturbios', 'Location','southeast')
+    
+    % Salida del controlador
+    figure('rend','painters','pos',[5 5 400 400])
+    title('Salida del controlador ')
+    hold on
+    plot(t,uds)
+    plot(t,r,'k-.')
+    plot(t,d,'k--')
+    legend('15%','30%','60%', 'referencia', 'disturbios')
