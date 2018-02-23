@@ -18,7 +18,7 @@ s=tf('s');
 % Se inicia un vector de tiempo
 t_inicial=0; % segundos
 t_final=0.5; % segundos
-t_pasos=10000000; % cantidad de elementos
+t_pasos=100000; % cantidad de elementos
 t=t_inicial:(t_final-t_inicial)/t_pasos:t_final; % vector de tiempo
 
 % El proceso real para el nivel de una columna de destilación calefactada
@@ -77,7 +77,7 @@ asint=transpose(-2*t+1.5);
 % se halla k
 t_inicial=0; % segundos
 t_final=100; % segundos
-t_pasos=10000; % cantidad de elementos
+t_pasos=1000; % cantidad de elementos
 t_paso=(t_final-t_inicial)/t_pasos
 t=t_inicial:t_paso:t_final; % vector de tiempo
 
@@ -105,7 +105,7 @@ tt2=double(tt2)
 % Se inicia un vector de tiempo
 t_inicial=0; % segundos
 t_final=5000; % segundos
-t_pasos=100000; % cantidad de elementos
+t_pasos=10000; % cantidad de elementos
 t=t_inicial:(t_final-t_inicial)/t_pasos:t_final; % vector de tiempo
 
 % El proceso real para el nivel de una columna de destilación calefactada
