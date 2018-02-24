@@ -13,14 +13,15 @@ escalon=heaviside(t);
 
 proceso=lsim(ps,escalon,t);
 modelo=lsim(psm,escalon,t);
-error=modelo-proceso;
+errormodelo=modelo-proceso;
 errorabs=(modelo-proceso);
 
-iae=trapz(errorabs);
+iae=trapz(errorabs)
+ise=trapz(errormodelo.^2)
 
 figure('rend','painters','pos',[5 5 400 400])
 title('Error del Modelo')
 hold on
-plot(t,error,'k')
+plot(t,errormodelo,'k')
 plot(t,0*t,'k:')
 legend('error','0')
