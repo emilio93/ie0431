@@ -112,7 +112,7 @@ title('Identificación del Modelo')
 hold on
 xlabel('Tiempo [s]');
 xlim([0 4]);
-plot(t,proceso,'b--')
+plot(t,proceso,'b:')
 plot(t,modelo,'k')
 plot(t,0*t,'k:')
 legend('proceso','modelo')

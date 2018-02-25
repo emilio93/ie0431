@@ -14,11 +14,11 @@ clc
 format long
 
 % Formato presentacion
-set(groot,'defaultLineLineWidth',2);
-set(groot,'defaultAxesLineWidth',2);
+set(groot,'defaultLineLineWidth',.25);
+set(groot,'defaultAxesLineWidth',.25);
 set(groot,'defaultTextFontSize',10);
-c1=[0 0 0.6];
-c2=[.7 .3 .3];
+c1=[0 0 0];%[0 0 0.6];
+c2=[0 0 0];%[.7 .3 .3];
 get(groot,'factory')
 
 % Se inicia la variable compleja s
